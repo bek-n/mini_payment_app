@@ -1,262 +1,260 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_credit_card/credit_card_brand.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:mini_payment_app/view/style/style.dart';
 
-class AddCardPage extends StatelessWidget {
-  const AddCardPage({Key? key}) : super(key: key);
+void main() => runApp(MySample());
+
+class MySample extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MySampleState();
+  }
+}
+
+class MySampleState extends State<MySample> {
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool isCvvFocused = false;
+  bool useGlassMorphism = false;
+  bool useBackgroundImage = false;
+  OutlineInputBorder? border;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    border = OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.grey.withOpacity(0.7),
+        width: 2.0,
+      ),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Add card"),
-        centerTitle: true,
+    return MaterialApp(
+      title: 'Flutter Credit Card View Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            32.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Cardholder Name",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: const Color(0xFF1A1A1A),
-                    ),
-                  ),
-                  8.verticalSpace,
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    cursorColor: Theme.of(context).colorScheme.primary,
-                    decoration: InputDecoration(
-                      hintText: "Enter your name as written on card",
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xFF1A1A1A).withOpacity(0.2494),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: const Color(0xFF1A1A1A).withOpacity(0.1),
-                          width: 1.sp,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 1.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                  24.verticalSpace,
-                  Text(
-                    "Card Number",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: const Color(0xFF1A1A1A),
-                    ),
-                  ),
-                  8.verticalSpace,
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    cursorColor: Theme.of(context).colorScheme.primary,
-                    decoration: InputDecoration(
-                      hintText: "Enter card number",
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xFF1A1A1A).withOpacity(0.2494),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: const Color(0xFF1A1A1A).withOpacity(0.1),
-                          width: 1.sp,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 1.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                  24.verticalSpace,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "cvv/cvc",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF1A1A1A),
-                              ),
-                            ),
-                            8.verticalSpace,
-                            TextField(
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              cursorColor:
-                                  Theme.of(context).colorScheme.primary,
-                              decoration: InputDecoration(
-                                hintText: "123",
-                                hintStyle: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: const Color(0xFF1A1A1A)
-                                      .withOpacity(0.2494),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color: const Color(0xFF1A1A1A)
-                                        .withOpacity(0.1),
-                                    width: 1.sp,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    width: 1.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      15.horizontalSpace,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Exp. Date",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF1A1A1A),
-                              ),
-                            ),
-                            8.verticalSpace,
-                            TextField(
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              cursorColor:
-                                  Theme.of(context).colorScheme.primary,
-                              decoration: InputDecoration(
-                                hintText: "20/20",
-                                hintStyle: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: const Color(0xFF1A1A1A)
-                                      .withOpacity(0.2494),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color: const Color(0xFF1A1A1A)
-                                        .withOpacity(0.1),
-                                    width: 1.sp,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    width: 1.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: 81.h,
-        width: 375.w,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.w),
-            topRight: Radius.circular(20.w),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.03),
-              offset: const Offset(0, -10),
-              blurRadius: 10,
+      home: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: ExactAssetImage('assets/bg.png'),
+              fit: BoxFit.fill,
             ),
-          ],
-        ),
-        child: Center(
-          child: InkWell(
-            child: Container(
-              height: 49.h,
-              width: 345.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.w),
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Submit Card",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+            color: Colors.black,
+          ),
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 30,
+                ),
+                CreditCardWidget(
+                  glassmorphismConfig:
+                      useGlassMorphism ? Glassmorphism.defaultConfig() : null,
+                  cardNumber: cardNumber,
+                  expiryDate: expiryDate,
+                  cardHolderName: cardHolderName,
+                  cvvCode: cvvCode,
+                  bankName: 'Axis Bank',
+                  frontCardBorder:
+                      !useGlassMorphism ? Border.all(color: Colors.grey) : null,
+                  backCardBorder:
+                      !useGlassMorphism ? Border.all(color: Colors.grey) : null,
+                  showBackView: isCvvFocused,
+                  obscureCardNumber: true,
+                  obscureCardCvv: true,
+                  isHolderNameVisible: true,
+                  cardBgColor: Style.primaryColor,
+                  backgroundImage:
+                      useBackgroundImage ? 'assets/card_bg.png' : null,
+                  isSwipeGestureEnabled: true,
+                  onCreditCardWidgetChange:
+                      (CreditCardBrand creditCardBrand) {},
+                  customCardTypeIcons: <CustomCardTypeIcon>[
+                    CustomCardTypeIcon(
+                      cardType: CardType.mastercard,
+                      cardImage: Image.asset(
+                        'assets/mastercard.png',
+                        height: 48,
+                        width: 48,
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        CreditCardForm(
+                          formKey: formKey,
+                          obscureCvv: true,
+                          obscureNumber: true,
+                          cardNumber: cardNumber,
+                          cvvCode: cvvCode,
+                          isHolderNameVisible: true,
+                          isCardNumberVisible: true,
+                          isExpiryDateVisible: true,
+                          cardHolderName: cardHolderName,
+                          expiryDate: expiryDate,
+                          themeColor: Colors.blue,
+                          textColor: Colors.white,
+                          cardNumberDecoration: InputDecoration(
+                            labelText: 'Number',
+                            hintText: 'XXXX XXXX XXXX XXXX',
+                            hintStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white),
+                            focusedBorder: border,
+                            enabledBorder: border,
+                          ),
+                          expiryDateDecoration: InputDecoration(
+                            hintStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white),
+                            focusedBorder: border,
+                            enabledBorder: border,
+                            labelText: 'Expired Date',
+                            hintText: 'XX/XX',
+                          ),
+                          cvvCodeDecoration: InputDecoration(
+                            hintStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white),
+                            focusedBorder: border,
+                            enabledBorder: border,
+                            labelText: 'CVV',
+                            hintText: 'XXX',
+                          ),
+                          cardHolderDecoration: InputDecoration(
+                            hintStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white),
+                            focusedBorder: border,
+                            enabledBorder: border,
+                            labelText: 'Card Holder',
+                          ),
+                          onCreditCardModelChange: onCreditCardModelChange,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              const Text(
+                                'Glassmorphism',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              const Spacer(),
+                              Switch(
+                                value: useGlassMorphism,
+                                inactiveTrackColor: Colors.grey,
+                                activeColor: Colors.white,
+                                activeTrackColor: Style.secondary,
+                                onChanged: (bool value) => setState(() {
+                                  useGlassMorphism = value;
+                                }),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              const Text(
+                                'Card Image',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              const Spacer(),
+                              Switch(
+                                value: useBackgroundImage,
+                                inactiveTrackColor: Colors.grey,
+                                activeColor: Colors.white,
+                                activeTrackColor: Style.secondary,
+                                onChanged: (bool value) => setState(() {
+                                  useBackgroundImage = value;
+                                }),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        GestureDetector(
+                          onTap: _onValidate,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: <Color>[
+                                  Color.fromARGB(255, 42, 87, 224),
+                                  Color.fromARGB(255, 18, 146, 122),
+                                  Color.fromARGB(255, 224, 54, 42),
+                                ],
+                                begin: Alignment(-1, -4),
+                                end: Alignment(1, 4),
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            width: double.infinity,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Validate',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'halter',
+                                fontSize: 14,
+                                package: 'flutter_credit_card',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _onValidate() {
+    if (formKey.currentState!.validate()) {
+      print('valid!');
+    } else {
+      print('invalid!');
+    }
+  }
+
+  void onCreditCardModelChange(CreditCardModel? creditCardModel) {
+    setState(() {
+      cardNumber = creditCardModel!.cardNumber;
+      expiryDate = creditCardModel.expiryDate;
+      cardHolderName = creditCardModel.cardHolderName;
+      cvvCode = creditCardModel.cvvCode;
+      isCvvFocused = creditCardModel.isCvvFocused;
+    });
   }
 }
