@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mini_payment_app/view/pages/add_card_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import '../components/TriangleShape.dart';
 import '../components/home_container.dart';
@@ -147,7 +148,7 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
+                GestureDetector(
                   onTap: () {},
                   child: Homecontainer(
                     icon: SvgPicture.asset(
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                     color: Style.secondary,
                   ),
                 ),
-                InkWell(
+                GestureDetector(
                   onTap: () {},
                   child: Homecontainer(
                     icon: SvgPicture.asset(
@@ -168,6 +169,21 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )
               ],
+            ),
+          ),
+          25.verticalSpace,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const AddCardPage()));
+            },
+            child: const Homecontainer(
+              icon: Icon(
+                Icons.add_card,
+                color: Colors.white,
+              ),
+              text: 'Add card',
+              color: Style.primaryColor,
             ),
           ),
           32.verticalSpace,
