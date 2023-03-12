@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:mini_payment_app/controller/home_controller.dart';
-import 'package:mini_payment_app/view/pages/contacts_screen.dart';
+import 'package:mini_payment_app/view/pages/contacts_page.dart';
 import 'package:mini_payment_app/view/pages/home_page.dart';
-import 'package:mini_payment_app/view/pages/profile_screen.dart';
-import 'package:mini_payment_app/view/pages/transactions_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../style/style.dart';
+import '../profile_screen.dart';
+import '../transactions_screen.dart';
 
 class GeneralPage extends StatefulWidget {
   const GeneralPage({super.key});
@@ -21,7 +21,7 @@ class _GeneralPageState extends State<GeneralPage> {
     const HomePage(),
     TransactionsPage(),
     ContactsPage(),
-    const ProfilePage()
+     const ProfilePage()
   ];
 
   int currentIndex = 0;

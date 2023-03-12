@@ -201,7 +201,7 @@ class UserCard extends StatelessWidget {
                 height: 20.h,
                 child: FittedBox(
                   child: SvgPicture.asset(
-                    'assets/images/send_icon.svg',
+                    'assets/svg/send_icon.svg',
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -222,7 +222,7 @@ class UserCard extends StatelessWidget {
                 height: 20.h,
                 child: FittedBox(
                   child: SvgPicture.asset(
-                    'assets/images/request_icon.svg',
+                    'assets/svg/request_icon.svg',
                   ),
                   fit: BoxFit.fill,
                 ),

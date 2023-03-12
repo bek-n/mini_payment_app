@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                             height: 24.h,
                             child: FittedBox(
                               child: SvgPicture.asset(
-                                "assets/images/notifications_icon.svg",
+                                "assets/svg/notifications_icon.svg",
                               ),
                               fit: BoxFit.fill,
                             ),
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                           height: 21.h,
                           child: FittedBox(
                             child: SvgPicture.asset(
-                              "assets/images/send_icon.svg",
+                              "assets/svg/send_icon.svg",
                             ),
                             fit: BoxFit.fill,
                           ),
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                           height: 21.h,
                           child: FittedBox(
                             child: SvgPicture.asset(
-                              "assets/images/request_icon.svg",
+                              "assets/svg/request_icon.svg",
                             ),
                             fit: BoxFit.fill,
                           ),
