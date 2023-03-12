@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) =>  MySample()));
+                  .push(MaterialPageRoute(builder: (_) =>  AddCardPage()));
             },
             child: const Homecontainer(
               icon: Icon(
