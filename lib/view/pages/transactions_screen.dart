@@ -49,6 +49,8 @@ class TransactionsPage extends StatelessWidget {
                     fit: BoxFit.fill,
                     child: SvgPicture.asset(
                       'assets/svg/search_icon.svg',
+                      // ignore: deprecated_member_use
+                      color: Style.primaryColor,
                     ),
                   ),
                 ),
@@ -62,21 +64,19 @@ class TransactionsPage extends StatelessWidget {
               height: 57.h,
               width: 345.w,
               decoration: BoxDecoration(
-                color: const Color(0xFFF3F4F5),
+                gradient: Style.linearUserInfo,
                 borderRadius: BorderRadius.circular(15.w),
               ),
               child: TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
                 padding: EdgeInsets.all(4.h),
                 indicator: BoxDecoration(
                   color: Style.secondary,
                   borderRadius: BorderRadius.circular(10.w),
                 ),
-                labelStyle: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-                unselectedLabelColor: const Color(0xFF1A1A1A),
-                labelColor: const Color(0xFF1A1A1A),
+                labelStyle: Style.textStyleRegular2(size: 14),
+                unselectedLabelColor: Style.darkBgcolorOfApp,
+                labelColor: Style.darkBgcolorOfApp,
                 tabs: const [
                   Tab(
                     child: Text("Incomes"),

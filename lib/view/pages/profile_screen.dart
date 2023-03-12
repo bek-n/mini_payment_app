@@ -54,17 +54,12 @@ class ProfilePage extends StatelessWidget {
                 ),
                 24.verticalSpace,
                 CircleAvatar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Color.fromARGB(255, 84, 84, 192),
                   radius: 50.w,
                   child: Center(
-                    child: Text(
-                      "B",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40.sp,
-                        color: const Color(0xFF1A1A1A),
-                      ),
-                    ),
+                    child: Text("B",
+                        style: Style.textStyleRegular(
+                            size: 40, textColor: Style.blackColor)),
                   ),
                 ),
                 8.verticalSpace,
@@ -109,95 +104,29 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               16.verticalSpace,
-              Container(
-                height: 64.h,
-                width: 375.w,
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3F4F5),
-                  borderRadius: BorderRadius.circular(15.w),
+              ProfileContainer(
+                icon: SvgPicture.asset(
+                  'assets/svg/settings_icon.svg',
+                  // ignore: deprecated_member_use
+                  color: Colors.black,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/settings_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    14.horizontalSpace,
-                    Text(
-                      "Settings",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/arrow_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
+                text: 'Settings',
+                icon1: SvgPicture.asset(
+                  'assets/svg/arrow_icon.svg',
+                  color: Colors.black,
                 ),
               ),
               16.verticalSpace,
-              Container(
-                height: 64.h,
-                width: 375.w,
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3F4F5),
-                  borderRadius: BorderRadius.circular(15.w),
+              ProfileContainer(
+                icon: SvgPicture.asset(
+                  'assets/svg/help_icon.svg',
+                  // ignore: deprecated_member_use
+                  color: Colors.black,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/help_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    14.horizontalSpace,
-                    Text(
-                      "Help Center",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/arrow_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
+                text: 'Help Center',
+                icon1: SvgPicture.asset(
+                  'assets/svg/arrow_icon.svg',
+                  color: Colors.black,
                 ),
               ),
             ],
