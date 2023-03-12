@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/controller/home_controller.dart';
-import 'package:mini_payment_app/view/pages/contacts_page.dart';
 import 'package:mini_payment_app/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../style/style.dart';
+import '../contacts_screen.dart';
 import '../profile_screen.dart';
 import '../transactions_screen.dart';
 
@@ -21,7 +22,7 @@ class _GeneralPageState extends State<GeneralPage> {
     const HomePage(),
     TransactionsPage(),
     ContactsPage(),
-     const ProfilePage()
+    const ProfilePage()
   ];
 
   int currentIndex = 0;
@@ -41,18 +42,24 @@ class _GeneralPageState extends State<GeneralPage> {
           context.read<HomeController>().setIndex(value);
         },
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.home_filled,
               size: 25,
-              color: Theme.of(context).unselectedWidgetColor,
+              color: Style.blackColor,
             ),
           ),
           BottomNavigationBarItem(
-              icon: Icon(
-            Icons.group_add_sharp,
-            size: 25,
-            color: Theme.of(context).unselectedWidgetColor,
+              icon: SvgPicture.asset(
+            'assets/svg/arrows_icon.svg',
+          )),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+            'assets/svg/contacts_icon.svg',
+          )),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+            'assets/svg/user_icon.svg',
           )),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,6 +14,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    FlutterNativeSplash.remove();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -21,13 +28,13 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 height: 262.h,
-                width: 375.w,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               CustomPaint(
-                size: Size(375.w, 262.h),
+                size: Size(double.infinity, 262.h),
                 painter: DrawTriangleShape(),
               ),
               Positioned(
@@ -47,9 +54,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       CircleAvatar(
-                        radius: 20.w,
-                        backgroundImage: const AssetImage(
-                            "assets/images/Profile Picture.png"),
+                        radius: 35.w,
+                        backgroundImage: const NetworkImage(
+                            "https://source.unsplash.com/random/1"),
                       ),
                     ],
                   ),
@@ -107,10 +114,10 @@ class _HomePageState extends State<HomePage> {
                             width: 24.w,
                             height: 24.h,
                             child: FittedBox(
+                              fit: BoxFit.fill,
                               child: SvgPicture.asset(
                                 "assets/svg/notifications_icon.svg",
                               ),
-                              fit: BoxFit.fill,
                             ),
                           ),
                           Positioned(
@@ -133,7 +140,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-       32.verticalSpace,
+          32.verticalSpace,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Row(
@@ -161,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                       4.horizontalSpace,
+                        4.horizontalSpace,
                         Text(
                           "Send Money",
                           style: TextStyle(
@@ -211,7 +218,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        32.verticalSpace,
+          32.verticalSpace,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Row(
@@ -238,7 +245,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-         
         ],
       ),
     );
