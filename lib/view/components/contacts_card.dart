@@ -20,27 +20,29 @@ class UserCard extends StatelessWidget {
             backgroundImage:
                 const NetworkImage("https://source.unsplash.com/random/2"),
           ),
-          17.verticalSpace,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'name',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: const Color(0xFF1A1A1A),
+          Padding(
+            padding: const EdgeInsets.only(left: 17),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Sardor',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: const Color(0xFF1A1A1A),
+                  ),
                 ),
-              ),
-              2.verticalSpace,
-              Text(
-                '   user.email',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: const Color(0xFF1A1A1A).withOpacity(0.4),
-                ),
-              )
-            ],
+                2.verticalSpace,
+                Text(
+                  'sardor@gmail.com',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: const Color(0xFF1A1A1A).withOpacity(0.4),
+                  ),
+                )
+              ],
+            ),
           ),
           const Spacer(),
           Container(
