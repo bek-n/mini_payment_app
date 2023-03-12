@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mini_payment_app/view/style/style.dart';
 
 import '../components/TriangleShape.dart';
 
@@ -148,38 +149,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 InkWell(
                   onTap: () {},
-                  child: Container(
-                    height: 49.h,
-                    width: 165.w,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(10.w),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 21.w,
-                          height: 21.h,
-                          child: FittedBox(
-                            child: SvgPicture.asset(
-                              "assets/svg/send_icon.svg",
-                            ),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        4.horizontalSpace,
-                        Text(
-                          "Send Money",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+                  child:
+                  
                   ),
-                ),
                 InkWell(
                   onTap: () {},
                   child: Container(
