@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:mini_payment_app/view/components/profile.dart';
+import 'package:mini_payment_app/view/style/style.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -12,14 +13,16 @@ class ProfilePage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          color: const Color(0xFFF3F4F5),
+          decoration: const BoxDecoration(
+            gradient: Style.linearUserInfo,
+          ),
           height: 262.h,
-          width: 375.w,
+          width: double.infinity,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Column(
               children: [
-               53.verticalSpace,
+                53.verticalSpace,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,22 +42,23 @@ class ProfilePage extends StatelessWidget {
                       width: 24.w,
                       height: 24.h,
                       child: FittedBox(
+                        fit: BoxFit.fill,
                         child: SvgPicture.asset(
-                          'assets/images/edit_icon.svg',
+                          'assets/svg/edit_icon.svg',
+                          // ignore: deprecated_member_use
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        fit: BoxFit.fill,
                       ),
                     ),
                   ],
                 ),
-              24.verticalSpace,
+                24.verticalSpace,
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 50.w,
                   child: Center(
                     child: Text(
-                      "H",
+                      "B",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 40.sp,
@@ -63,9 +67,9 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-              8.verticalSpace,
+                8.verticalSpace,
                 Text(
-                  "Hisham Zayadnh",
+                  "name",
                   style: TextStyle(
                     fontSize: 16.sp,
                   ),
@@ -74,103 +78,37 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ),
-       40.verticalSpace,
+        40.verticalSpace,
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
             children: [
-              Container(
-                height: 64.h,
-                width: 375.w,
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3F4F5),
-                  borderRadius: BorderRadius.circular(15.w),
+              ProfileContainer(
+                icon: SvgPicture.asset(
+                  'assets/svg/profile_icon.svg',
+                  // ignore: deprecated_member_use
+                  color: Colors.black,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/profile_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  14.horizontalSpace,
-                    Text(
-                      "My Info",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/arrow_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
+                text: 'My info',
+                icon1: SvgPicture.asset(
+                  'assets/svg/arrow_icon.svg',
+                  color: Colors.black,
                 ),
               ),
-             16.verticalSpace,
-              Container(
-                height: 64.h,
-                width: 375.w,
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3F4F5),
-                  borderRadius: BorderRadius.circular(15.w),
+              16.verticalSpace,
+              ProfileContainer(
+                icon: SvgPicture.asset(
+                  'assets/svg/card_icon.svg',
+                  // ignore: deprecated_member_use
+                  color: Colors.black,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/card_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                   14.horizontalSpace,
-                    Text(
-                      "My Cards",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        child: SvgPicture.asset(
-                          'assets/images/arrow_icon.svg',
-                          color: Colors.black,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
+                text: 'My Cards',
+                icon1: SvgPicture.asset(
+                  'assets/svg/arrow_icon.svg',
+                  color: Colors.black,
                 ),
               ),
-             16.verticalSpace,
+              16.verticalSpace,
               Container(
                 height: 64.h,
                 width: 375.w,
@@ -193,7 +131,7 @@ class ProfilePage extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     ),
-                   14.horizontalSpace,
+                    14.horizontalSpace,
                     Text(
                       "Settings",
                       style: TextStyle(
@@ -216,7 +154,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-            16.verticalSpace,
+              16.verticalSpace,
               Container(
                 height: 64.h,
                 width: 375.w,
@@ -239,7 +177,7 @@ class ProfilePage extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     ),
-                   14.horizontalSpace,
+                    14.horizontalSpace,
                     Text(
                       "Help Center",
                       style: TextStyle(

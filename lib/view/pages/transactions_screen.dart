@@ -2,89 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-
-
-enum TransactionType { send, request }
-
-class Transation {
-  String userImage;
-  String userName;
-  String dateTime;
-  double amount;
-  TransactionType transactionType;
-
-  Transation(
-      {required this.userImage,
-      required this.userName,
-      required this.dateTime,
-      required this.amount,
-      required this.transactionType});
-}
+import 'package:mini_payment_app/view/style/style.dart';
 
 class TransactionsPage extends StatelessWidget {
-  TransactionsPage({Key? key}) : super(key: key);
-
-  final List<Transation> octTransactions = [
-    Transation(
-      userImage: 'hiba.png',
-      userName: 'Hiba Saleh',
-      dateTime: 'Oct 19, 05:45 AM',
-      amount: 12.50,
-      transactionType: TransactionType.send,
-    ),
-    Transation(
-      userImage: 'sahar.png',
-      userName: 'Sahar Fawzi',
-      dateTime: 'Oct 15, 09:10 PM',
-      amount: 54.00,
-      transactionType: TransactionType.send,
-    ),
-    Transation(
-      userImage: 'sara.png',
-      userName: 'Sara Ibrahim',
-      dateTime: 'Oct 12, 02:13 PM',
-      amount: 25.00,
-      transactionType: TransactionType.send,
-    ),
-    Transation(
-      userImage: 'nisreen.png',
-      userName: 'Nisreen Ismail',
-      dateTime: 'Oct 07, 09:10 PM',
-      amount: 10.50,
-      transactionType: TransactionType.send,
-    ),
-    Transation(
-      userImage: 'ahmed.png',
-      userName: 'Ahmed Ibrahim',
-      dateTime: 'Oct 02, 01:19 AM',
-      amount: 8.0,
-      transactionType: TransactionType.send,
-    ),
-  ];
-
-  final List<Transation> sepTransactions = [
-    Transation(
-      userImage: 'yara.png',
-      userName: 'Yara Khalil',
-      dateTime: 'Sep 28, 09:10 PM',
-      amount: 13.00,
-      transactionType: TransactionType.send,
-    ),
-    Transation(
-      userImage: 'reem.png',
-      userName: 'Reem Khaled',
-      dateTime: 'Sep 25, 09:10 PM',
-      amount: 10.50,
-      transactionType: TransactionType.send,
-    ),
-    Transation(
-      userImage: 'yara.png',
-      userName: 'Yara Khalil',
-      dateTime: 'Sep 22, 10:34 AM',
-      amount: 15.0,
-      transactionType: TransactionType.send,
-    ),
-  ];
+  const TransactionsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -125,17 +46,16 @@ class TransactionsPage extends StatelessWidget {
                   width: 24.w,
                   height: 24.h,
                   child: FittedBox(
-                    child: SvgPicture.asset(
-                      'assets/images/search_icon.svg',
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
                     fit: BoxFit.fill,
+                    child: SvgPicture.asset(
+                      'assets/svg/search_icon.svg',
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-         24.verticalSpace,
+          24.verticalSpace,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Container(
@@ -148,7 +68,7 @@ class TransactionsPage extends StatelessWidget {
               child: TabBar(
                 padding: EdgeInsets.all(4.h),
                 indicator: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Style.secondary,
                   borderRadius: BorderRadius.circular(10.w),
                 ),
                 labelStyle: TextStyle(
@@ -168,7 +88,7 @@ class TransactionsPage extends StatelessWidget {
               ),
             ),
           ),
-        24.verticalSpace,
+          24.verticalSpace,
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -182,17 +102,14 @@ class TransactionsPage extends StatelessWidget {
                         fontSize: 12.sp,
                       ),
                     ),
-                  16.verticalSpace,
+                    16.verticalSpace,
                     ListView.separated(
                       padding: EdgeInsets.zero,
-                      itemCount: octTransactions.length,
+                      itemCount: 1,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      separatorBuilder: (context, index) =>
-                         16.verticalSpace,
-                      itemBuilder: (context, index) => TransactionCard(
-                        transaction: octTransactions[index],
-                      ),
+                      separatorBuilder: (context, index) => 16.verticalSpace,
+                      itemBuilder: (context, index) => TransactionCard(),
                     ),
                     24.verticalSpace,
                     Text(
@@ -201,17 +118,14 @@ class TransactionsPage extends StatelessWidget {
                         fontSize: 12.sp,
                       ),
                     ),
-                   16.verticalSpace,
+                    16.verticalSpace,
                     ListView.separated(
                       padding: EdgeInsets.zero,
-                      itemCount: sepTransactions.length,
+                      itemCount: 3,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      separatorBuilder: (context, index) =>
-                         16.verticalSpace,
-                      itemBuilder: (context, index) => TransactionCard(
-                        transaction: sepTransactions[index],
-                      ),
+                      separatorBuilder: (context, index) => 16.verticalSpace,
+                      itemBuilder: (context, index) => TransactionCard(),
                     ),
                   ],
                 ),
@@ -225,12 +139,7 @@ class TransactionsPage extends StatelessWidget {
 }
 
 class TransactionCard extends StatelessWidget {
-  const TransactionCard({
-    Key? key,
-    required this.transaction,
-  }) : super(key: key);
-
-  final Transation transaction;
+  const TransactionCard({super.key});
 
   String formatCurrency(double amount) {
     final NumberFormat numberFormat = NumberFormat("#,##00.00", "en_US");
@@ -247,42 +156,35 @@ class TransactionCard extends StatelessWidget {
           CircleAvatar(
             radius: 20.w,
             backgroundColor: const Color(0xFFF3F4F5),
-            backgroundImage:
-                AssetImage("assets/images/${transaction.userImage}"),
+            backgroundImage: AssetImage("assets/images/logo.png"),
           ),
-        17.horizontalSpace,
+          17.horizontalSpace,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                transaction.userName,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: const Color(0xFF1A1A1A),
-                ),
+                'Name',
+                style: Style.textStyleRegular2(size: 14),
               ),
-             2.verticalSpace,
+              2.verticalSpace,
               Text(
-                transaction.dateTime,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: const Color(0xFF1A1A1A).withOpacity(0.4),
-                ),
+                "date and time",
+                style: Style.textStyleRegular2(size: 12),
               )
             ],
           ),
           const Spacer(),
-          Text(
-            transaction.transactionType == TransactionType.send
-                ? "-\$${formatCurrency(transaction.amount)}"
-                : "+\$${formatCurrency(transaction.amount)}",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          )
+          // Text(
+          //   transaction.transactionType == TransactionType.send
+          //       ? "-\$${formatCurrency(transaction.amount)}"
+          //       : "+\$${formatCurrency(transaction.amount)}",
+          //   style: TextStyle(
+          //     color: Colors.black,
+          //     fontSize: 16.sp,
+          //     fontWeight: FontWeight.w600,
+          //   ),
+          // )
         ],
       ),
     );

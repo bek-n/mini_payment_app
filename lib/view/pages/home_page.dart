@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Text(
-                    "Hi, Amanda!",
+                    "Hi, name!",
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.5),
                       fontSize: 16.sp,
