@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:mini_payment_app/controller/home_controller.dart';
+import 'package:mini_payment_app/view/pages/contacts_screen.dart';
 import 'package:mini_payment_app/view/pages/home_page.dart';
+import 'package:mini_payment_app/view/pages/profile_screen.dart';
+import 'package:mini_payment_app/view/pages/transactions_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../style/style.dart';
-
 
 class GeneralPage extends StatefulWidget {
   const GeneralPage({super.key});
@@ -17,7 +19,9 @@ class GeneralPage extends StatefulWidget {
 class _GeneralPageState extends State<GeneralPage> {
   List<Widget> mainPages = [
     const HomePage(),
-    const AddUserPage(),
+    TransactionsPage(),
+    ContactsPage(),
+    const ProfilePage()
   ];
 
   int currentIndex = 0;
