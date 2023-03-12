@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../style/style.dart';
 
 class Homecontainer extends StatelessWidget {
-  const Homecontainer({super.key});
+  final Widget icon;
+  final String text;
+  final Color color;
+  const Homecontainer({super.key, required this.icon, required this.text, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class Homecontainer extends StatelessWidget {
       height: 49.h,
       width: 165.w,
       decoration: BoxDecoration(
-        color: Style.secondary,
+        color: color,
         borderRadius: BorderRadius.circular(10.w),
       ),
       child: Row(
@@ -22,21 +23,10 @@ class Homecontainer extends StatelessWidget {
           SizedBox(
             width: 21.w,
             height: 21.h,
-            child: FittedBox(
-              fit: BoxFit.fill,
-              child: SvgPicture.asset(
-                "assets/svg/send_icon.svg",
-              ),
-            ),
+            child: FittedBox(fit: BoxFit.fill, child: icon),
           ),
           4.horizontalSpace,
-          Text(
-            "Send Money",
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          Text(text, style: Style.textStyleRegular2(size: 14)),
         ],
       ),
     );

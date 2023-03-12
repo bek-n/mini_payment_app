@@ -3,8 +3,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/view/style/style.dart';
-
 import '../components/TriangleShape.dart';
+import '../components/home_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -149,42 +149,22 @@ class _HomePageState extends State<HomePage> {
               children: [
                 InkWell(
                   onTap: () {},
-                  child:
-                  
+                  child: Homecontainer(
+                    icon: SvgPicture.asset(
+                      "assets/svg/send_icon.svg",
+                    ),
+                    text: 'Send Money',
+                    color: Style.secondary,
                   ),
+                ),
                 InkWell(
                   onTap: () {},
-                  child: Container(
-                    height: 49.h,
-                    width: 165.w,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(10.w),
+                  child: Homecontainer(
+                    icon: SvgPicture.asset(
+                      "assets/svg/request_icon.svg",
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 21.w,
-                          height: 21.h,
-                          child: FittedBox(
-                            child: SvgPicture.asset(
-                              "assets/svg/request_icon.svg",
-                            ),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        4.horizontalSpace,
-                        Text(
-                          "Request Money",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+                    text: 'Request Money',
+                    color: Style.primaryColor,
                   ),
                 )
               ],
