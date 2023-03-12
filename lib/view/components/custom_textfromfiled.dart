@@ -17,6 +17,7 @@ class CustomTextFrom extends StatelessWidget {
   final FormFieldValidator? validator;
   final FocusNode? node;
   final TextStyle? style;
+  final int? numb;
   final List<TextInputFormatter>? format;
 
   const CustomTextFrom(
@@ -35,72 +36,72 @@ class CustomTextFrom extends StatelessWidget {
       this.validator,
       this.node,
       this.style,
-      this.format})
+      this.format,
+      this.numb})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: TextFormField(
-        inputFormatters: format,
-        onChanged: onChange,
-        style: style,
-        validator: validator,
-        focusNode: node,
-        keyboardType: keyboardType,
-        controller: controller,
-        decoration: InputDecoration(
-          fillColor: fillColor,
-          filled: filled,
-          suffixIcon: suffixicon,
+    return TextFormField(
+      maxLines: numb,
+      minLines: numb,
+      inputFormatters: format,
+      onChanged: onChange,
+      style: style,
+      validator: validator,
+      focusNode: node,
+      keyboardType: keyboardType,
+      controller: controller,
+      decoration: InputDecoration(
+        fillColor: fillColor,
+        filled: filled,
+        suffixIcon: suffixicon,
 
-          prefix: perfixicon,
-          // suffix: suffixicon,
-          label: Text('$label'),
-          labelStyle:
-              Style.textStyleRegular2(textColor: Style.greyColor90, size: 15),
-          hintText: hintext,
-          // contentPadding:
-          //     const EdgeInsets.only(left: 24, right: 80, top: 12, bottom: 12),
-          errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.red,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+        prefix: perfixicon,
+        // suffix: suffixicon,
+        label: Text('$label'),
+        labelStyle:
+            Style.textStyleRegular2(textColor: Style.greyColor90, size: 15),
+        hintText: hintext,
+        // contentPadding:
+        //     const EdgeInsets.only(left: 24, right: 80, top: 12, bottom: 12),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
           ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
 
-          focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.red,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
           ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xffAFB0B6),
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
           ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xffAFB0B6),
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+        ),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xffAFB0B6),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Style.primaryColor),
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xffAFB0B6),
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Style.primaryColor),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
           ),
         ),
       ),

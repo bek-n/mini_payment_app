@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 24.verticalSpace,
                 CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 84, 84, 192),
+                  backgroundColor: Color.fromARGB(255, 105, 105, 207),
                   radius: 50.w,
                   child: Center(
                     child: Text("B",

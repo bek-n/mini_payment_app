@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/view/pages/add_card_page.dart';
+import 'package:mini_payment_app/view/pages/send_money_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import '../components/TriangleShape.dart';
 import '../components/home_container.dart';
@@ -149,7 +150,10 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const SendMoneyPage()));
+                  },
                   child: Homecontainer(
                     icon: SvgPicture.asset(
                       "assets/svg/send_icon.svg",
@@ -175,7 +179,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) =>  AddCardPage()));
+                  .push(MaterialPageRoute(builder: (_) => AddCardPage()));
             },
             child: const Homecontainer(
               icon: Icon(
