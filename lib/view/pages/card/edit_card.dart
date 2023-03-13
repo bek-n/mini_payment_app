@@ -239,6 +239,6 @@ class _EditCardState extends State<EditCard> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.w),
             ),
-            child: const DeleteCardDialog()));
+            child:  DeleteCardDialog(id: widget.docId,)));
   }
 }

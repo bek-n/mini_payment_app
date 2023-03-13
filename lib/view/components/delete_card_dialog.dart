@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:mini_payment_app/view/pages/card/cards_page.dart';
+import 'package:provider/provider.dart';
 
 class DeleteCardDialog extends StatelessWidget {
-  const DeleteCardDialog({super.key});
+  final String id;
+  const DeleteCardDialog({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +67,14 @@ class DeleteCardDialog extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pop();
+                    context.read<UserController>().deleteCard(
+                        docId: id,
+                        onSuccess: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (_) => const CardsPage()),
+                              (route) => false);
+                        });
                   },
                   child: Container(
                     height: 49.h,

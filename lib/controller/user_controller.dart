@@ -12,6 +12,7 @@ class UserController extends ChangeNotifier {
   bool cardLoading = false;
   bool createCardLoading = false;
   bool editLoading = false;
+  bool deleteLoading = false;
   List<CardModel> lst = [];
 
   getUser() async {
@@ -38,7 +39,8 @@ class UserController extends ChangeNotifier {
             cardHolder: cardHolder,
             cvv: cvv,
             expiredDate: expiredDate,
-            number: number, cardId: '')
+            number: number,
+            cardId: '')
         .toJson());
 
     cardLoading = false;
@@ -54,8 +56,8 @@ class UserController extends ChangeNotifier {
     res = await firestore.collection("cards").get();
     lst.clear();
     for (var element in res.docs) {
-       String docId = element.id;
-      lst.add(CardModel.fromJson(element.data(),docId));
+      String docId = element.id;
+      lst.add(CardModel.fromJson(element.data(), docId));
       print(lst.length);
     }
     createCardLoading = false;
@@ -65,7 +67,6 @@ class UserController extends ChangeNotifier {
   editCard({
     required VoidCallback onSuccess,
     required CardModel infos,
-    
   }) async {
     editLoading = true;
     notifyListeners();
@@ -74,9 +75,20 @@ class UserController extends ChangeNotifier {
             cardHolder: infos.cardHolder,
             cvv: infos.cvv,
             expiredDate: infos.expiredDate,
-            number: infos.expiredDate, cardId: '')
+            number: infos.number,
+            cardId: '')
         .toJson());
     editLoading = false;
+    notifyListeners();
+    onSuccess();
+  }
+
+  deleteCard({required String docId, required VoidCallback onSuccess}) async {
+    deleteLoading = true;
+    notifyListeners();
+    CollectionReference cards = firestore.collection('cards');
+    await cards.doc(docId).delete();
+    deleteLoading = false;
     notifyListeners();
     onSuccess();
   }

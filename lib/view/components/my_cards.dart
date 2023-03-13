@@ -97,11 +97,11 @@ class PaymentCard extends StatelessWidget {
                                   size: 12, textColor: Style.whiteColor)),
                         ],
                       ),
-                      50.horizontalSpace,
+                      30.horizontalSpace,
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Exp. Date",
+                          Text("Exp.Date",
                               style: Style.textStyleRegular2(
                                   textColor: Style.whiteColor)),
                           4.verticalSpace,
