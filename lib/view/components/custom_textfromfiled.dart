@@ -59,7 +59,7 @@ class CustomTextFrom extends StatelessWidget {
 
         prefix: perfixicon,
         // suffix: suffixicon,
-        label: Text('$label'),
+
         labelStyle:
             Style.textStyleRegular2(textColor: Style.greyColor90, size: 15),
         hintText: hintext,

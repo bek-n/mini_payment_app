@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
-import 'package:mini_payment_app/view/pages/add_card_page.dart';
-import 'package:mini_payment_app/view/pages/edit_card.dart';
+import 'package:mini_payment_app/view/pages/card/add_card_page.dart';
+import 'package:mini_payment_app/view/pages/card/edit_card.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
 
-import '../components/delete_card_dialog.dart';
-import '../components/my_cards.dart';
+import '../../components/delete_card_dialog.dart';
+import '../../components/my_cards.dart';
 
 class CardsPage extends StatefulWidget {
   const CardsPage({Key? key}) : super(key: key);
@@ -63,7 +63,7 @@ class _CardsPageState extends State<CardsPage> {
                       itemBuilder: (context, index) => GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) => EditCard()));
+                                  builder: (_) => EditCard(list: state.lst[index],)));
                             },
                             child: PaymentCard(
                                 holderName: state.lst[index].cardHolder,

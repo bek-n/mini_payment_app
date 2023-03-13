@@ -6,8 +6,8 @@ import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/view/pages/general/general_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
-import '../components/add_card_button.dart';
-import '../components/on_unfocused.dart';
+import '../../components/add_card_button.dart';
+import '../../components/on_unfocused.dart';
 
 class AddCardPage extends StatefulWidget {
   const AddCardPage({super.key});
