@@ -63,12 +63,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 8.verticalSpace,
-                Text(
-                  "Bek N",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                  ),
-                ),
+                Text("Bek N", style: Style.textStyleRegular2()),
               ],
             ),
           ),

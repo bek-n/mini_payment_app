@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../../domain/model/user_model.dart';
 import '../components/TriangleShape.dart';
 import '../components/home_container.dart';
-
+import '../components/home_last_transactions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -246,58 +246,12 @@ class _HomePageState extends State<HomePage> {
                 shrinkWrap: true,
                 itemCount: state.lstt.length,
                 itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 15),
-                        height: 70.h,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            gradient: Style.linearUserInfo),
-                        child: Row(
-                          children: [
-                            15.horizontalSpace,
-                            CircleAvatar(
-                              radius: 20.w,
-                              backgroundColor: const Color(0xFFF3F4F5),
-                              backgroundImage:
-                                  const AssetImage("assets/images/logo.png"),
-                            ),
-                            10.horizontalSpace,
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  state.lstt[index].date.substring(0, 16),
-                                  style: Style.textStyleRegular2(
-                                      textColor: Style.whiteColor),
-                                ),
-                                Text(
-                                  state.lstt[index].name,
-                                  style: Style.textStyleRegular2(
-                                      textColor: Style.whiteColor),
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: AnimatedDigitWidget(
-                                  suffix: ' So\'m',
-                                  textStyle: Style.textStyleRegular(
-                                      size: 18, textColor: Colors.red),
-                                  duration: const Duration(milliseconds: 800),
-                                  curve: Curves.linear,
-                                  separateSymbol: '.',
-                                  enableSeparator: true,
-                                  value:
-                                      int.tryParse(state.lstt[index].summa) ??
-                                          0),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: LastTransactions(
+                      date: state.lstt[index].date.substring(0, 16),
+                      name: state.lstt[index].name,
+                      summa: state.lstt[index].summa,
+                    ))),
           )
         ],
       ),
