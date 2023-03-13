@@ -12,7 +12,8 @@ import 'package:provider/provider.dart';
 
 class EditCard extends StatefulWidget {
   final CardModel list;
-  const EditCard({super.key, required this.list});
+  final String docId;
+  const EditCard({super.key, required this.list, required this.docId});
 
   @override
   State<EditCard> createState() => _EditCardState();
@@ -164,17 +165,19 @@ class _EditCardState extends State<EditCard> {
             InkWell(
               onTap: () {
                 state.editCard(
-                    onSuccess: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => const CardsPage()),
-                          (route) => false);
-                    },
-                    infos: CardModel(
-                        cardHolder: name.text,
-                        cvv: cvv.text,
-                        expiredDate: expDate.text,
-                        number: number.text),
-                    docId: );
+                  onSuccess: () {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (_) => const CardsPage()),
+                        (route) => false);
+                  },
+                  infos: CardModel(
+                    
+                      cardHolder: name.text,
+                      cvv: cvv.text,
+                      expiredDate: expDate.text,
+                      number: number.text,
+                      cardId: widget.docId),
+                );
               },
               child: Container(
                 height: 49.h,

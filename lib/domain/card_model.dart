@@ -1,14 +1,16 @@
 class CardModel {
-  final String cardHolder, cvv, expiredDate, number;
+  final String cardHolder, cvv, expiredDate, number,cardId;
 
-  CardModel(
+  CardModel( 
       {required this.cardHolder,
+      required this.cardId, 
       required this.cvv,
       required this.expiredDate,
       required this.number});
 
-  factory CardModel.fromJson(Map<String, dynamic> data) {
+  factory CardModel.fromJson(Map<String, dynamic> data, String docId,) {
     return CardModel(
+      cardId: docId,
         cardHolder: data['card_holder'],
         cvv: data['cvv'],
         expiredDate: data['expired_date'],

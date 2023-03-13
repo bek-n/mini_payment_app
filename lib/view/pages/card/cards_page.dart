@@ -62,6 +62,7 @@ class _CardsPageState extends State<CardsPage> {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) => EditCard(
                                         list: state.lst[index],
+                                        docId: state.lst[index].cardId,
                                       )));
                             },
                             child: PaymentCard(

@@ -7,6 +7,7 @@ import '../domain/model/user_model.dart';
 class UserController extends ChangeNotifier {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   UserModel? user;
+  String? doc;
   bool loading = false;
   bool cardLoading = false;
   bool createCardLoading = false;
@@ -37,7 +38,7 @@ class UserController extends ChangeNotifier {
             cardHolder: cardHolder,
             cvv: cvv,
             expiredDate: expiredDate,
-            number: number)
+            number: number, cardId: '')
         .toJson());
 
     cardLoading = false;
@@ -53,7 +54,8 @@ class UserController extends ChangeNotifier {
     res = await firestore.collection("cards").get();
     lst.clear();
     for (var element in res.docs) {
-      lst.add(CardModel.fromJson(element.data()));
+       String docId = element.id;
+      lst.add(CardModel.fromJson(element.data(),docId));
       print(lst.length);
     }
     createCardLoading = false;
@@ -63,16 +65,16 @@ class UserController extends ChangeNotifier {
   editCard({
     required VoidCallback onSuccess,
     required CardModel infos,
-    required String docId,
+    
   }) async {
     editLoading = true;
     notifyListeners();
 
-     await firestore.collection("cards").doc(docId).update(CardModel(
+    await firestore.collection("cards").doc(infos.cardId).update(CardModel(
             cardHolder: infos.cardHolder,
             cvv: infos.cvv,
             expiredDate: infos.expiredDate,
-            number: infos.expiredDate)
+            number: infos.expiredDate, cardId: '')
         .toJson());
     editLoading = false;
     notifyListeners();
