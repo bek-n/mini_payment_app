@@ -19,7 +19,8 @@ class SendMoneyButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          context.watch<UserController>().sendLoading
+          context.watch<UserController>().sendLoading ||
+                  context.watch<UserController>().createarxivLoading
               ? const Center(
                   child: CircularProgressIndicator(
                   color: Style.whiteColor,

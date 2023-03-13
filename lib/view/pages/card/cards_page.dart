@@ -30,7 +30,7 @@ class _CardsPageState extends State<CardsPage> {
   @override
   Widget build(BuildContext context) {
     final state = context.read<UserController>();
-    final event = context.watch<UserController>();
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

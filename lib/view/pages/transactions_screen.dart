@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
-
 import '../../controller/user_controller.dart';
 import '../components/transaction_container.dart';
 

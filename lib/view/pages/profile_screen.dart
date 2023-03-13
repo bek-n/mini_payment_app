@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 24.verticalSpace,
                 CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 105, 105, 207),
+                  backgroundColor: const Color.fromARGB(255, 105, 105, 207),
                   radius: 50.w,
                   child: Center(
                     child: Text("B",
@@ -87,6 +87,7 @@ class ProfilePage extends StatelessWidget {
                 text: 'My info',
                 icon1: SvgPicture.asset(
                   'assets/svg/arrow_icon.svg',
+                  // ignore: deprecated_member_use
                   color: Colors.black,
                 ),
               ),
@@ -100,6 +101,7 @@ class ProfilePage extends StatelessWidget {
                 text: 'My Cards',
                 icon1: SvgPicture.asset(
                   'assets/svg/arrow_icon.svg',
+                  // ignore: deprecated_member_use
                   color: Colors.black,
                 ),
               ),
@@ -113,6 +115,7 @@ class ProfilePage extends StatelessWidget {
                 text: 'Settings',
                 icon1: SvgPicture.asset(
                   'assets/svg/arrow_icon.svg',
+                  // ignore: deprecated_member_use
                   color: Colors.black,
                 ),
               ),
@@ -126,6 +129,7 @@ class ProfilePage extends StatelessWidget {
                 text: 'Help Center',
                 icon1: SvgPicture.asset(
                   'assets/svg/arrow_icon.svg',
+                  // ignore: deprecated_member_use
                   color: Colors.black,
                 ),
               ),

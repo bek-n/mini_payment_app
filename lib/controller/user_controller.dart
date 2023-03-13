@@ -55,14 +55,15 @@ class UserController extends ChangeNotifier {
   getCards() async {
     createCardLoading = true;
     notifyListeners();
-    var res;
+   // ignore: prefer_typing_uninitialized_variables
+   var res;
 
     res = await firestore.collection("cards").get();
     lst.clear();
     for (var element in res.docs) {
       String docId = element.id;
       lst.add(CardModel.fromJson(element.data(), docId));
-      print(lst.length);
+      debugPrint('${lst.length}');
     }
     createCardLoading = false;
     notifyListeners();
@@ -136,14 +137,14 @@ class UserController extends ChangeNotifier {
   getArxivs() async {
     arxivLoading = true;
     notifyListeners();
+    // ignore: prefer_typing_uninitialized_variables
     var res;
 
     res = await firestore.collection("arxiv").get();
     lstt.clear();
     for (var element in res.docs) {
-      String docId = element.id;
       lstt.add(ArxivModel.fromJson(element.data()));
-      print(lstt.length);
+      debugPrint(lstt.length.toString());
     }
     arxivLoading = false;
     notifyListeners();

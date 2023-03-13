@@ -1,9 +1,6 @@
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-
-import '../../controller/user_controller.dart';
 import '../style/style.dart';
 
 class TransactionCard extends StatelessWidget {
@@ -13,7 +10,6 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<UserController>();
     return SizedBox(
       height: 49.h,
       child: Row(

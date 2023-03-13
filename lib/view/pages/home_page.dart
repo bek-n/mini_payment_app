@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../../domain/model/user_model.dart';
 import '../components/TriangleShape.dart';
 import '../components/home_container.dart';
-import '../components/profile.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -203,7 +203,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => AddCardPage()));
+                  .push(MaterialPageRoute(builder: (_) => const AddCardPage()));
             },
             child: const Homecontainer(
               icon: Icon(
