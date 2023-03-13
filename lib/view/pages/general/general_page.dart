@@ -20,8 +20,8 @@ class GeneralPage extends StatefulWidget {
 class _GeneralPageState extends State<GeneralPage> {
   List<Widget> mainPages = [
     const HomePage(),
-    TransactionsPage(),
-    ContactsPage(),
+    const TransactionsPage(),
+    const ContactsPage(),
     const ProfilePage()
   ];
 

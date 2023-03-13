@@ -1,10 +1,14 @@
+import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/view/pages/add_card_page.dart';
 import 'package:mini_payment_app/view/pages/send_money_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
+import 'package:provider/provider.dart';
+import '../../domain/model/user_model.dart';
 import '../components/TriangleShape.dart';
 import '../components/home_container.dart';
 
@@ -16,9 +20,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  UserModel? info;
   @override
   void initState() {
-    FlutterNativeSplash.remove();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UserController>().getUser();
+      FlutterNativeSplash.remove();
+    });
+
     super.initState();
   }
 
@@ -102,13 +111,16 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        "\$124.57",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      AnimatedDigitWidget(
+                        suffix: ' So\'m',
+                        textStyle: Style.textStyleRegular(
+                            size: 28, textColor: Style.secondary),
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.linear,
+                        separateSymbol: '.',
+                        enableSeparator: true,
+                        value:
+                            context.watch<UserController>().user?.totalBalance,
                       ),
                       Stack(
                         clipBehavior: Clip.none,
