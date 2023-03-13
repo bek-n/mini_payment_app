@@ -171,7 +171,6 @@ class _EditCardState extends State<EditCard> {
                         (route) => false);
                   },
                   infos: CardModel(
-                    
                       cardHolder: name.text,
                       cvv: cvv.text,
                       expiredDate: expDate.text,
@@ -239,6 +238,8 @@ class _EditCardState extends State<EditCard> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.w),
             ),
-            child:  DeleteCardDialog(id: widget.docId,)));
+            child: DeleteCardDialog(
+              id: widget.docId,
+            )));
   }
 }
