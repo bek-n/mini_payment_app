@@ -1,7 +1,7 @@
 class UserModel {
-  final num? totalBalance;
+  final num totalBalance;
 
-  UserModel({this.totalBalance});
+  UserModel({required this.totalBalance});
 
   factory UserModel.fromJson(Map<String, dynamic>? data) {
     return UserModel(totalBalance: data?['balance']);

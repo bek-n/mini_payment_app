@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/view/pages/add_card_page.dart';
+import 'package:mini_payment_app/view/pages/cards_page.dart';
 import 'package:mini_payment_app/view/pages/send_money_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
@@ -119,8 +120,11 @@ class _HomePageState extends State<HomePage> {
                         curve: Curves.linear,
                         separateSymbol: '.',
                         enableSeparator: true,
-                        value:
-                            context.watch<UserController>().user?.totalBalance,
+                        value: context
+                                .watch<UserController>()
+                                .user
+                                ?.totalBalance ??
+                            0,
                       ),
                       Stack(
                         clipBehavior: Clip.none,
@@ -175,12 +179,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => CardsPage()));
+                  },
                   child: Homecontainer(
                     icon: SvgPicture.asset(
-                      "assets/svg/request_icon.svg",
+                      "assets/svg/card_icon.svg",
+                      // ignore: deprecated_member_use
+                      color: Style.whiteColor,
                     ),
-                    text: 'Request Money',
+                    text: 'My Cards',
                     color: Style.primaryColor,
                   ),
                 )

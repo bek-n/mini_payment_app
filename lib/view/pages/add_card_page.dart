@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/view/pages/general/general_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
+import 'package:provider/provider.dart';
 import '../components/add_card_button.dart';
 import '../components/on_unfocused.dart';
 
@@ -43,6 +45,7 @@ class AddCardPageState extends State<AddCardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<UserController>();
     return OnUnFocusTap(
       child: Scaffold(
         appBar: AppBar(
@@ -207,10 +210,17 @@ class AddCardPageState extends State<AddCardPage> {
                   GestureDetector(
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (_) => const GeneralPage()),
-                              (route) => false);
+                          state.createCard(
+                              number: cardNumber,
+                              cardHolder: cardHolderName,
+                              cvv: cvvCode,
+                              expiredDate: expiryDate,
+                              onSuccess: () {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (_) => const GeneralPage()),
+                                    (route) => false);
+                              });
                         }
                       },
                       child: const ButtonAddCard()),

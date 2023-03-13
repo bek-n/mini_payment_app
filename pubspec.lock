@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dismissible_carousel_viewpager:
+    dependency: "direct main"
+    description:
+      name: dismissible_carousel_viewpager
+      sha256: be15e6385e8b0e4976875f4c6ef6ee1fb56a3872d9a2c5158a7bf2fa138a9464
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   fake_async:
     dependency: transitive
     description:
