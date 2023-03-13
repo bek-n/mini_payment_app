@@ -14,7 +14,10 @@ class UserController extends ChangeNotifier {
   bool editLoading = false;
   bool deleteLoading = false;
   bool sendLoading = false;
+  bool arxivLoading = false;
+  bool createarxivLoading = false;
   List<CardModel> lst = [];
+  List<ArxivModel> lstt = [];
 
   getUser() async {
     loading = true;
@@ -97,7 +100,6 @@ class UserController extends ChangeNotifier {
   sendMoney({
     required UserModel infos,
     required num money,
-    required VoidCallback onSuccess,
   }) {
     sendLoading = true;
     notifyListeners();
@@ -110,7 +112,6 @@ class UserController extends ChangeNotifier {
     debugPrint(' Jami : ${infos.totalBalance}');
     sendLoading = false;
     notifyListeners();
-    onSuccess();
   }
 
   createArxiv({
@@ -120,15 +121,31 @@ class UserController extends ChangeNotifier {
     required String summa,
     required VoidCallback onSuccess,
   }) async {
-    cardLoading = true;
+    createarxivLoading = true;
     notifyListeners();
 
     await firestore.collection("arxiv").add(
         ArxivModel(name: name, date: date, summa: summa, comment: comment)
             .toJson());
 
-    cardLoading = false;
+    createarxivLoading = false;
     notifyListeners();
     onSuccess();
+  }
+
+  getArxivs() async {
+    arxivLoading = true;
+    notifyListeners();
+    var res;
+
+    res = await firestore.collection("arxiv").get();
+    lstt.clear();
+    for (var element in res.docs) {
+      String docId = element.id;
+      lstt.add(ArxivModel.fromJson(element.data()));
+      print(lstt.length);
+    }
+    arxivLoading = false;
+    notifyListeners();
   }
 }

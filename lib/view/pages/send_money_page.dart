@@ -18,16 +18,19 @@ class SendMoneyPage extends StatefulWidget {
 
 class _SendMoneyPageState extends State<SendMoneyPage> {
   late TextEditingController amount;
+  late TextEditingController note;
 
   @override
   void initState() {
     amount = TextEditingController();
+    note = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     amount.dispose();
+    note.dispose();
     super.dispose();
   }
 
@@ -89,7 +92,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       isObscure: false,
                     ),
                     32.verticalSpace,
-                    const CustomTextFrom(
+                    CustomTextFrom(
+                      controller: note,
                       numb: 8,
                       hintext: 'Payment Note',
                       isObscure: false,
@@ -99,18 +103,24 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
               ),
               50.verticalSpace,
               GestureDetector(
-                  onTap: () {
-                    context.read<UserController>().sendMoney(
+                  onTap: () async {
+                    await context.read<UserController>().sendMoney(
                         money: int.parse(amount.text),
-                        onSuccess: () {
-                          _showConfimrationDialog(context);
-                        },
                         infos: UserModel(
                             totalBalance: context
                                     .read<UserController>()
                                     .user
                                     ?.totalBalance ??
                                 0));
+                    // ignore: use_build_context_synchronously
+                    context.read<UserController>().createArxiv(
+                        date: DateTime.now().toString(),
+                        name: 'Sardor',
+                        comment: note.text,
+                        summa: amount.text,
+                        onSuccess: () {
+                          _showConfimrationDialog(context);
+                        });
                   },
                   child: const SendMoneyButton())
             ],

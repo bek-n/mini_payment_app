@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../../domain/model/user_model.dart';
 import '../components/TriangleShape.dart';
 import '../components/home_container.dart';
+import '../components/profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<UserController>().getUser();
+      context.read<UserController>().getArxivs();
       FlutterNativeSplash.remove();
     });
 
@@ -34,6 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<UserController>();
     return Scaffold(
       body: Column(
         children: [
@@ -180,8 +183,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => CardsPage()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const CardsPage()));
                   },
                   child: Homecontainer(
                     icon: SvgPicture.asset(
@@ -238,6 +241,20 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: state.lstt.length,
+                itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Container(
+                        height: 70.h,
+                        width: double.infinity,
+                        decoration:
+                            BoxDecoration(gradient: Style.linearUserInfo),
+                      ),
+                    )),
+          )
         ],
       ),
     );

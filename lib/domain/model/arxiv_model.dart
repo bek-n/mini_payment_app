@@ -8,7 +8,7 @@ class ArxivModel {
       required this.comment,
       });
 
-  factory ArxivModel.fromJson(Map<String, dynamic> data, String docId,) {
+  factory ArxivModel.fromJson(Map<String, dynamic> data,) {
     return ArxivModel(
      
         name: data['name'],
