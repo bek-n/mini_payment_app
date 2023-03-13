@@ -45,6 +45,7 @@ class _EditCardState extends State<EditCard> {
   @override
   Widget build(BuildContext context) {
     final state = context.read<UserController>();
+    final event = context.watch<UserController>();
     return Scaffold(
       backgroundColor: Style.whiteColor,
       appBar: AppBar(
@@ -185,18 +186,20 @@ class _EditCardState extends State<EditCard> {
                   borderRadius: BorderRadius.circular(15.w),
                   color: Style.primaryColor,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Save Changes",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                child: Center(
+                  child: event.editLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          color: Style.whiteColor,
+                        ))
+                      : Text(
+                          "Save Changes",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                 ),
               ),
             ),

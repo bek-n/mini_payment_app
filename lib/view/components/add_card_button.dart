@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:provider/provider.dart';
 import '../style/style.dart';
 
 class ButtonAddCard extends StatelessWidget {
@@ -15,8 +17,13 @@ class ButtonAddCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15),
       width: double.infinity,
       alignment: Alignment.center,
-      child: Text('Add Card',
-          style: Style.textStyleRegular(textColor: Style.whiteColor)),
+      child: context.watch<UserController>().cardLoading
+          ? const Center(
+              child: CircularProgressIndicator(
+              color: Style.whiteColor,
+            ))
+          : Text('Add Card',
+              style: Style.textStyleRegular(textColor: Style.whiteColor)),
     );
   }
 }

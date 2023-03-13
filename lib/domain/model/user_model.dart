@@ -1,5 +1,5 @@
 class UserModel {
-  final num totalBalance;
+   late  num totalBalance;
 
   UserModel({required this.totalBalance});
 

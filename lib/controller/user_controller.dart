@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mini_payment_app/domain/card_model.dart';
-
+import 'package:mini_payment_app/domain/model/arxiv_model.dart';
 import '../domain/model/user_model.dart';
 
 class UserController extends ChangeNotifier {
@@ -13,6 +13,7 @@ class UserController extends ChangeNotifier {
   bool createCardLoading = false;
   bool editLoading = false;
   bool deleteLoading = false;
+  bool sendLoading = false;
   List<CardModel> lst = [];
 
   getUser() async {
@@ -89,6 +90,44 @@ class UserController extends ChangeNotifier {
     CollectionReference cards = firestore.collection('cards');
     await cards.doc(docId).delete();
     deleteLoading = false;
+    notifyListeners();
+    onSuccess();
+  }
+
+  sendMoney({
+    required UserModel infos,
+    required num money,
+    required VoidCallback onSuccess,
+  }) {
+    sendLoading = true;
+    notifyListeners();
+
+    infos.totalBalance = infos.totalBalance - money;
+    firestore
+        .collection('user')
+        .doc('gFEkMa5epajz0du4fbbL')
+        .update(UserModel(totalBalance: infos.totalBalance).toJson());
+    debugPrint(' Jami : ${infos.totalBalance}');
+    sendLoading = false;
+    notifyListeners();
+    onSuccess();
+  }
+
+  createArxiv({
+    required String date,
+    required String name,
+    required String comment,
+    required String summa,
+    required VoidCallback onSuccess,
+  }) async {
+    cardLoading = true;
+    notifyListeners();
+
+    await firestore.collection("arxiv").add(
+        ArxivModel(name: name, date: date, summa: summa, comment: comment)
+            .toJson());
+
+    cardLoading = false;
     notifyListeners();
     onSuccess();
   }

@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:mini_payment_app/domain/model/user_model.dart';
 import 'package:mini_payment_app/view/components/custom_textfromfiled.dart';
 import 'package:mini_payment_app/view/components/on_unfocused.dart';
 import 'package:mini_payment_app/view/style/style.dart';
-import 'package:lottie/lottie.dart';
-import '../components/primary_button.dart';
+import 'package:provider/provider.dart';
 import '../components/send_button.dart';
+import '../components/send_money.dart';
 
-class SendMoneyPage extends StatelessWidget {
+class SendMoneyPage extends StatefulWidget {
   const SendMoneyPage({Key? key}) : super(key: key);
+
+  @override
+  State<SendMoneyPage> createState() => _SendMoneyPageState();
+}
+
+class _SendMoneyPageState extends State<SendMoneyPage> {
+  late TextEditingController amount;
+
+  @override
+  void initState() {
+    amount = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    amount.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +59,7 @@ class SendMoneyPage extends StatelessWidget {
                           radius: 30.w,
                           child: Center(
                             child: Text(
-                              "Y",
+                              "S",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18.sp,
@@ -52,37 +73,26 @@ class SendMoneyPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Yara Khalil",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF1A1A1A),
-                              ),
-                            ),
-                            1.verticalSpace,
-                            Text(
-                              "yara_khalil@gmail.com",
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: const Color(0xFF1A1A1A).withOpacity(0.4),
-                              ),
-                            ),
+                            Text('Sardor', style: Style.textStyleRegular2()),
+                            2.verticalSpace,
+                            Text('sardor@gmail.com',
+                                style: Style.textStyleRegular2(size: 12))
                           ],
                         ),
                       ],
                     ),
                     32.verticalSpace,
-                    const CustomTextFrom(
-                      hintext: '',
+                    CustomTextFrom(
+                      controller: amount,
+                      keyboardType: TextInputType.number,
+                      hintext: 'Payment Amount',
                       isObscure: false,
-                      label: 'Payment Amount',
                     ),
                     32.verticalSpace,
                     const CustomTextFrom(
                       numb: 8,
-                      hintext: '',
+                      hintext: 'Payment Note',
                       isObscure: false,
-                      label: 'Payment Note',
                     )
                   ],
                 ),
@@ -90,7 +100,17 @@ class SendMoneyPage extends StatelessWidget {
               50.verticalSpace,
               GestureDetector(
                   onTap: () {
-                    _showConfimrationDialog(context);
+                    context.read<UserController>().sendMoney(
+                        money: int.parse(amount.text),
+                        onSuccess: () {
+                          _showConfimrationDialog(context);
+                        },
+                        infos: UserModel(
+                            totalBalance: context
+                                    .read<UserController>()
+                                    .user
+                                    ?.totalBalance ??
+                                0));
                   },
                   child: const SendMoneyButton())
             ],
@@ -104,44 +124,11 @@ class SendMoneyPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        insetPadding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.w),
-        ),
-        child: SizedBox(
-          height: 430.h,
-          width: 327.w,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.w,
-            ),
-            child: Column(
-              children: [
-                40.verticalSpace,
-                SizedBox(
-                  width: 240.w,
-                  height: 180.h,
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: LottieBuilder.asset('assets/images/send.json'),
-                  ),
-                ),
-                35.verticalSpace,
-                Text(
-                  "The amount has been sent successfully!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20.sp,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                40.verticalSpace,
-                const PrimaryButton(text: "Ok, Thanks")
-              ],
-            ),
+          insetPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.w),
           ),
-        ),
-      ),
+          child: const SendMoney()),
     );
   }
 }

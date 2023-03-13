@@ -5,6 +5,8 @@ import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/view/pages/card/cards_page.dart';
 import 'package:provider/provider.dart';
 
+import '../style/style.dart';
+
 class DeleteCardDialog extends StatelessWidget {
   final String id;
   const DeleteCardDialog({super.key, required this.id});
@@ -84,14 +86,19 @@ class DeleteCardDialog extends StatelessWidget {
                       color: const Color(0xFFFB3640),
                     ),
                     child: Center(
-                      child: Text(
-                        "Remove",
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                      ),
+                      child: context.watch<UserController>().deleteLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                              color: Style.whiteColor,
+                            ))
+                          : Text(
+                              "Remove",
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ),
                 )
