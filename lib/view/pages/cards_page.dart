@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/view/pages/add_card_page.dart';
+import 'package:mini_payment_app/view/pages/edit_card.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
 
@@ -60,14 +61,15 @@ class _CardsPageState extends State<CardsPage> {
                   child: ListView.builder(
                       itemCount: state.lst.length,
                       itemBuilder: (context, index) => GestureDetector(
-                        onTap: () {
-                          
-                        },
-                        child: PaymentCard(
-                            holderName: state.lst[index].cardHolder,
-                            expDate: state.lst[index].expiredDate,
-                            number: state.lst[index].number),
-                      ))),
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => EditCard()));
+                            },
+                            child: PaymentCard(
+                                holderName: state.lst[index].cardHolder,
+                                expDate: state.lst[index].expiredDate,
+                                number: state.lst[index].number),
+                          ))),
             ]));
   }
 }

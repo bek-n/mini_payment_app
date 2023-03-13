@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/view/components/delete_card_dialog.dart';
+import 'package:mini_payment_app/view/style/style.dart';
 
 class EditCard extends StatelessWidget {
   const EditCard({super.key});
@@ -9,202 +10,195 @@ class EditCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Cardholder Name",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: const Color(0xFF1A1A1A),
-                    ),
+      backgroundColor: Style.whiteColor,
+      appBar: AppBar(
+        backgroundColor: Style.whiteColor,
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Cardholder Name",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: const Color(0xFF1A1A1A),
+              ),
+            ),
+            8.verticalSpace,
+            TextField(
+              keyboardType: TextInputType.number,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              cursorColor: Theme.of(context).colorScheme.primary,
+              decoration: InputDecoration(
+                hintText: "Enter your name as written on card",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  color: const Color(0xFF1A1A1A).withOpacity(0.2494),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.w),
+                  borderSide: BorderSide(
+                    color: const Color(0xFF1A1A1A).withOpacity(0.1),
+                    width: 1.sp,
                   ),
-                 8.verticalSpace,
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    cursorColor: Theme.of(context).colorScheme.primary,
-                    decoration: InputDecoration(
-                      hintText: "Enter your name as written on card",
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xFF1A1A1A).withOpacity(0.2494),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: const Color(0xFF1A1A1A).withOpacity(0.1),
-                          width: 1.sp,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 1.sp,
-                        ),
-                      ),
-                    ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.w),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 1.sp,
                   ),
-                  24.verticalSpace,
-                  Text(
-                    "Card Number",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: const Color(0xFF1A1A1A),
-                    ),
+                ),
+              ),
+            ),
+            24.verticalSpace,
+            Text(
+              "Card Number",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: const Color(0xFF1A1A1A),
+              ),
+            ),
+            8.verticalSpace,
+            TextField(
+              keyboardType: TextInputType.number,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              cursorColor: Theme.of(context).colorScheme.primary,
+              decoration: InputDecoration(
+                hintText: "Enter card number",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  color: const Color(0xFF1A1A1A).withOpacity(0.2494),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.w),
+                  borderSide: BorderSide(
+                    color: const Color(0xFF1A1A1A).withOpacity(0.1),
+                    width: 1.sp,
                   ),
-                  8.verticalSpace,
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    cursorColor: Theme.of(context).colorScheme.primary,
-                    decoration: InputDecoration(
-                      hintText: "Enter card number",
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xFF1A1A1A).withOpacity(0.2494),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: const Color(0xFF1A1A1A).withOpacity(0.1),
-                          width: 1.sp,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.w),
-                        borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 1.sp,
-                        ),
-                      ),
-                    ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.w),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 1.sp,
                   ),
-                 24.verticalSpace,
-                  Row(
+                ),
+              ),
+            ),
+            24.verticalSpace,
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "cvv/cvc",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF1A1A1A),
-                              ),
-                            ),
-                           8.verticalSpace,
-                            TextField(
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              cursorColor:
-                                  Theme.of(context).colorScheme.primary,
-                              decoration: InputDecoration(
-                                hintText: "123",
-                                hintStyle: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: const Color(0xFF1A1A1A)
-                                      .withOpacity(0.2494),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color: const Color(0xFF1A1A1A)
-                                        .withOpacity(0.1),
-                                    width: 1.sp,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    width: 1.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                      Text(
+                        "cvv/cvc",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: const Color(0xFF1A1A1A),
                         ),
                       ),
-                     15.horizontalSpace,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Exp. Date",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF1A1A1A),
-                              ),
+                      8.verticalSpace,
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        cursorColor: Theme.of(context).colorScheme.primary,
+                        decoration: InputDecoration(
+                          hintText: "123",
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: const Color(0xFF1A1A1A).withOpacity(0.2494),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.w),
+                            borderSide: BorderSide(
+                              color: const Color(0xFF1A1A1A).withOpacity(0.1),
+                              width: 1.sp,
                             ),
-                          8.verticalSpace,
-                            TextField(
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              cursorColor:
-                                  Theme.of(context).colorScheme.primary,
-                              decoration: InputDecoration(
-                                hintText: "20/20",
-                                hintStyle: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: const Color(0xFF1A1A1A)
-                                      .withOpacity(0.2494),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color: const Color(0xFF1A1A1A)
-                                        .withOpacity(0.1),
-                                    width: 1.sp,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.w),
-                                  borderSide: BorderSide(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    width: 1.sp,
-                                  ),
-                                ),
-                              ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.w),
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 1.sp,
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
-                  )
-                ],
-              ),
-            ),
-          
-        
-      
+                  ),
+                ),
+                15.horizontalSpace,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Exp. Date",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: const Color(0xFF1A1A1A),
+                        ),
+                      ),
+                      8.verticalSpace,
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        cursorColor: Theme.of(context).colorScheme.primary,
+                        decoration: InputDecoration(
+                          hintText: "20/20",
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: const Color(0xFF1A1A1A).withOpacity(0.2494),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.w),
+                            borderSide: BorderSide(
+                              color: const Color(0xFF1A1A1A).withOpacity(0.1),
+                              width: 1.sp,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.w),
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 1.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: Container(
         height: 81.h,
         width: 375.w,
@@ -249,7 +243,7 @@ class EditCard extends StatelessWidget {
                 ),
               ),
             ),
-           15.horizontalSpace,
+            15.horizontalSpace,
             InkWell(
               onTap: () => _showConfimrationDialog(context),
               child: Container(
@@ -281,18 +275,12 @@ class EditCard extends StatelessWidget {
 
   _showConfimrationDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        insetPadding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.w),
-        ),
-        child: const DeleteCardDialog()));
-    
-    
-    
+        context: context,
+        builder: (context) => Dialog(
+            insetPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.w),
+            ),
+            child: const DeleteCardDialog()));
   }
 }
-
-
-
