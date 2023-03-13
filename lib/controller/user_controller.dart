@@ -10,6 +10,7 @@ class UserController extends ChangeNotifier {
   bool loading = false;
   bool cardLoading = false;
   bool createCardLoading = false;
+  bool editLoading = false;
   List<CardModel> lst = [];
 
   getUser() async {
@@ -54,10 +55,27 @@ class UserController extends ChangeNotifier {
     for (var element in res.docs) {
       lst.add(CardModel.fromJson(element.data()));
       print(lst.length);
-    
     }
-
     createCardLoading = false;
     notifyListeners();
+  }
+
+  editCard({
+    required VoidCallback onSuccess,
+    required CardModel infos,
+    required String docId,
+  }) async {
+    editLoading = true;
+    notifyListeners();
+
+     await firestore.collection("cards").doc(docId).update(CardModel(
+            cardHolder: infos.cardHolder,
+            cvv: infos.cvv,
+            expiredDate: infos.expiredDate,
+            number: infos.expiredDate)
+        .toJson());
+    editLoading = false;
+    notifyListeners();
+    onSuccess();
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/domain/card_model.dart';
 import 'package:mini_payment_app/view/components/custom_textfromfiled.dart';
 import 'package:mini_payment_app/view/components/delete_card_dialog.dart';
 import 'package:mini_payment_app/view/components/my_cards.dart';
+import 'package:mini_payment_app/view/pages/card/cards_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
+import 'package:provider/provider.dart';
 
 class EditCard extends StatefulWidget {
   final CardModel list;
@@ -40,95 +43,102 @@ class _EditCardState extends State<EditCard> {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<UserController>();
     return Scaffold(
       backgroundColor: Style.whiteColor,
       appBar: AppBar(
+        title: Text(
+          'Edit Card',
+          style: Style.textStyleRegular(size: 24),
+        ),
         backgroundColor: Style.whiteColor,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PaymentCard(
-                holderName: widget.list.cardHolder,
-                expDate: widget.list.expiredDate,
-                number: widget.list.number),
-            30.verticalSpace,
-            Text(
-              "Cardholder Name",
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: const Color(0xFF1A1A1A),
-              ),
-            ),
-            8.verticalSpace,
-            CustomTextFrom(
-              hintext: '',
-              isObscure: false,
-              controller: name,
-            ),
-            24.verticalSpace,
-            Text(
-              "Card Number",
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: const Color(0xFF1A1A1A),
-              ),
-            ),
-            8.verticalSpace,
-            CustomTextFrom(
-              hintext: '',
-              isObscure: false,
-              controller: number,
-            ),
-            24.verticalSpace,
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "cvv/cvc",
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: const Color(0xFF1A1A1A),
-                        ),
-                      ),
-                      8.verticalSpace,
-                      CustomTextFrom(
-                        hintext: '',
-                        isObscure: false,
-                        controller: cvv,
-                      ),
-                    ],
-                  ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PaymentCard(
+                  holderName: widget.list.cardHolder,
+                  expDate: widget.list.expiredDate,
+                  number: widget.list.number),
+              30.verticalSpace,
+              Text(
+                "Cardholder Name",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: const Color(0xFF1A1A1A),
                 ),
-                15.horizontalSpace,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Exp. Date",
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: const Color(0xFF1A1A1A),
-                        ),
-                      ),
-                      8.verticalSpace,
-                      CustomTextFrom(
-                        hintext: '',
-                        isObscure: false,
-                        controller: expDate,
-                      ),
-                    ],
-                  ),
+              ),
+              8.verticalSpace,
+              CustomTextFrom(
+                hintext: '',
+                isObscure: false,
+                controller: name,
+              ),
+              24.verticalSpace,
+              Text(
+                "Card Number",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: const Color(0xFF1A1A1A),
                 ),
-              ],
-            )
-          ],
+              ),
+              8.verticalSpace,
+              CustomTextFrom(
+                hintext: '',
+                isObscure: false,
+                controller: number,
+              ),
+              24.verticalSpace,
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "cvv/cvc",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: const Color(0xFF1A1A1A),
+                          ),
+                        ),
+                        8.verticalSpace,
+                        CustomTextFrom(
+                          hintext: '',
+                          isObscure: false,
+                          controller: cvv,
+                        ),
+                      ],
+                    ),
+                  ),
+                  15.horizontalSpace,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Exp. Date",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: const Color(0xFF1A1A1A),
+                          ),
+                        ),
+                        8.verticalSpace,
+                        CustomTextFrom(
+                          hintext: '',
+                          isObscure: false,
+                          controller: expDate,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Container(
@@ -152,7 +162,20 @@ class _EditCardState extends State<EditCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                state.editCard(
+                    onSuccess: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => const CardsPage()),
+                          (route) => false);
+                    },
+                    infos: CardModel(
+                        cardHolder: name.text,
+                        cvv: cvv.text,
+                        expiredDate: expDate.text,
+                        number: number.text),
+                    docId: );
+              },
               child: Container(
                 height: 49.h,
                 width: 281.w,
