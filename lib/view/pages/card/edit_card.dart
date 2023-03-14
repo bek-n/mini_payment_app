@@ -233,5 +233,4 @@ class _EditCardState extends State<EditCard> {
             child: DeleteCardDialog(
               id: widget.docId,
             )));
-  }
-}
+  }}

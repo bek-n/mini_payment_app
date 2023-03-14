@@ -26,6 +26,7 @@ class AddCardPageState extends State<AddCardPage> {
   bool isCvvFocused = false;
   bool useGlassMorphism = false;
   bool useBackgroundImage = false;
+  int index = 0;
   OutlineInputBorder? border;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -70,8 +71,6 @@ class AddCardPageState extends State<AddCardPage> {
             children: <Widget>[
               30.verticalSpace,
               CreditCardWidget(
-                glassmorphismConfig:
-                    useGlassMorphism ? Glassmorphism.defaultConfig() : null,
                 cardNumber: cardNumber,
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
@@ -86,8 +85,6 @@ class AddCardPageState extends State<AddCardPage> {
                 obscureCardCvv: true,
                 isHolderNameVisible: true,
                 cardBgColor: Style.blackColor,
-                backgroundImage:
-                    useBackgroundImage ? 'assets/images/card.png' : null,
                 isSwipeGestureEnabled: true,
                 onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {},
                 customCardTypeIcons: <CustomCardTypeIcon>[
@@ -101,6 +98,31 @@ class AddCardPageState extends State<AddCardPage> {
                   ),
                 ],
               ),
+              10.verticalSpace,
+              SizedBox(
+                height: 100.h,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 7,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          this.index = index;
+                          state.getColor(index);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(2),
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                           image: DecorationImage(image: AssetImage(listOfImages[index]),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+              10.verticalSpace,
               Column(
                 children: <Widget>[
                   CreditCardForm(
@@ -156,57 +178,7 @@ class AddCardPageState extends State<AddCardPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
-                          'Glassmorphism',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const Spacer(),
-                        Switch(
-                          value: useGlassMorphism,
-                          inactiveTrackColor: Colors.grey,
-                          activeColor: Colors.white,
-                          activeTrackColor: Style.primaryColor,
-                          onChanged: (bool value) => setState(() {
-                            useGlassMorphism = value;
-                          }),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
-                          'Card Image',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const Spacer(),
-                        Switch(
-                          value: useBackgroundImage,
-                          inactiveTrackColor: Colors.grey,
-                          activeColor: Colors.white,
-                          activeTrackColor: Style.primaryColor,
-                          onChanged: (bool value) => setState(() {
-                            useBackgroundImage = value;
-                          }),
-                        ),
-                      ],
-                    ),
-                  ),
-                  20.verticalSpace,
+                  100.verticalSpace,
                   GestureDetector(
                       onTap: () {
                         if (formKey.currentState!.validate()) {

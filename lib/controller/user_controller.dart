@@ -19,6 +19,15 @@ class UserController extends ChangeNotifier {
   List<CardModel> lst = [];
   List<ArxivModel> lstt = [];
 
+  List images = [
+    'assets/images/card1.jpg'
+    'assets/images/card2.jpg'
+    'assets/images/card3.jpg'
+    'assets/images/card4.jpg'
+    'assets/images/card5.jpg'
+    'assets/images/card6.jpg'
+  ];
+
   getUser() async {
     loading = true;
     notifyListeners();
@@ -55,8 +64,8 @@ class UserController extends ChangeNotifier {
   getCards() async {
     createCardLoading = true;
     notifyListeners();
-   // ignore: prefer_typing_uninitialized_variables
-   var res;
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
 
     res = await firestore.collection("cards").get();
     lst.clear();

@@ -1,5 +1,5 @@
 class CardModel {
-  final String cardHolder, cvv, expiredDate, number,cardId;
+  late String cardHolder, cvv, expiredDate, number,cardId;
 
   CardModel( 
       {required this.cardHolder,
