@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/controller/home_controller.dart';
 import 'package:mini_payment_app/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
-
 import '../../style/style.dart';
 import '../contacts_screen.dart';
 import '../profile_screen.dart';
@@ -46,7 +45,7 @@ class _GeneralPageState extends State<GeneralPage> {
             icon: Icon(
               Icons.home_filled,
               size: 25,
-              color: Style.blackColor,
+              color: Style.greyColor90,
             ),
           ),
           BottomNavigationBarItem(
