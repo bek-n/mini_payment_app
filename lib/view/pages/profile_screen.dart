@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mini_payment_app/view/components/profile.dart';
+import 'package:mini_payment_app/view/pages/general/app_widget.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../../controller/local/local.dart';
+
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool isAdimChangedTheme = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +50,18 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(
                         width: 24.w,
                         height: 24.h,
-                        child: Icon(Icons.dark_mode)),
+                        child: IconButton(
+                            onPressed: () {
+                              isAdimChangedTheme = !isAdimChangedTheme;
+                              MyApp.of(context)!.change();
+                              LocalStore.setTheme(isAdimChangedTheme);
+                              setState(() {});
+                            },
+                            icon: Icon(
+                                !isAdimChangedTheme
+                                    ? Icons.dark_mode
+                                    : Icons.light_mode,
+                                color: Style.primaryColor))),
                   ],
                 ),
                 24.verticalSpace,

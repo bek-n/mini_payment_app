@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/home_controller.dart';
-import '../../../controller/local.dart';
+import '../../../controller/local/local.dart';
 import '../../../controller/user_controller.dart';
 import '../../style/style.dart';
 import 'general_page.dart';
@@ -13,6 +13,9 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+  // ignore: library_private_types_in_public_api
+  static _MyAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -48,6 +51,7 @@ class _MyAppState extends State<MyApp> {
             ],
             child: MaterialApp(
               home: const GeneralPage(),
+              themeMode: isChangeTheme ? ThemeMode.dark : ThemeMode.light,
               theme: ThemeData(
                   appBarTheme:
                       const AppBarTheme(backgroundColor: Style.whiteColor),
