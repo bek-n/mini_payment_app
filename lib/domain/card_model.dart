@@ -1,16 +1,22 @@
 class CardModel {
-  late String cardHolder, cvv, expiredDate, number,cardId;
+  final String cardHolder, cvv, expiredDate, number, cardId;
+  final int index;
 
-  CardModel( 
+  CardModel(
       {required this.cardHolder,
-      required this.cardId, 
+      required this.index,
+      required this.cardId,
       required this.cvv,
       required this.expiredDate,
       required this.number});
 
-  factory CardModel.fromJson(Map<String, dynamic> data, String docId,) {
+  factory CardModel.fromJson(
+    Map<String, dynamic> data,
+    String docId,
+  ) {
     return CardModel(
-      cardId: docId,
+        index: data['image_index'],
+        cardId: docId,
         cardHolder: data['card_holder'],
         cvv: data['cvv'],
         expiredDate: data['expired_date'],
@@ -19,6 +25,7 @@ class CardModel {
 
   toJson() {
     return {
+      'image_index': index,
       'card_holder': cardHolder,
       'cvv': cvv,
       'expired_date': expiredDate,

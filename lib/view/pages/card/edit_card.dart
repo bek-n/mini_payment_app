@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 class EditCard extends StatefulWidget {
   final CardModel list;
   final String docId;
+
   const EditCard({super.key, required this.list, required this.docId});
 
   @override
@@ -24,6 +25,8 @@ class _EditCardState extends State<EditCard> {
   TextEditingController number = TextEditingController();
   TextEditingController cvv = TextEditingController();
   TextEditingController expDate = TextEditingController();
+
+  int index = 0;
   @override
   void initState() {
     name.text = widget.list.cardHolder;
@@ -60,6 +63,7 @@ class _EditCardState extends State<EditCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CreditCardWidget(
+                backgroundImage: event.image,
                 isHolderNameVisible: true,
                 bankName: 'Davr Bank',
                 cardNumber: widget.list.number,
@@ -70,7 +74,32 @@ class _EditCardState extends State<EditCard> {
                 // ignore: non_constant_identifier_names
                 onCreditCardWidgetChange: (CreditCardBrand) {},
               ),
-              30.verticalSpace,
+              SizedBox(
+                height: 100.h,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.images.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            this.index = index;
+                            state.getImage(index);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            height: 70,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(state.images[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ));
+                    }),
+              ),
+              15.verticalSpace,
               Text("Cardholder Name",
                   style: Theme.of(context).textTheme.titleSmall),
               8.verticalSpace,
@@ -165,7 +194,8 @@ class _EditCardState extends State<EditCard> {
                       cvv: cvv.text,
                       expiredDate: expDate.text,
                       number: number.text,
-                      cardId: widget.docId),
+                      cardId: widget.docId,
+                      index: index),
                 );
               },
               child: Container(
@@ -233,4 +263,5 @@ class _EditCardState extends State<EditCard> {
             child: DeleteCardDialog(
               id: widget.docId,
             )));
-  }}
+  }
+}

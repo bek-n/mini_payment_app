@@ -20,13 +20,14 @@ class UserController extends ChangeNotifier {
   List<ArxivModel> lstt = [];
 
   List images = [
-    'assets/images/card1.jpg'
-    'assets/images/card2.jpg'
-    'assets/images/card3.jpg'
-    'assets/images/card4.jpg'
-    'assets/images/card5.jpg'
+    'assets/images/card1.jpg',
+    'assets/images/card2.jpg',
+    'assets/images/card3.jpg',
+    'assets/images/card4.jpg',
+    'assets/images/card5.jpg',
     'assets/images/card6.jpg'
   ];
+  String image = 'assets/images/bg.png';
 
   getUser() async {
     loading = true;
@@ -43,6 +44,7 @@ class UserController extends ChangeNotifier {
     required String cardHolder,
     required String cvv,
     required String expiredDate,
+    required int index,
     required VoidCallback onSuccess,
   }) async {
     cardLoading = true;
@@ -53,7 +55,7 @@ class UserController extends ChangeNotifier {
             cvv: cvv,
             expiredDate: expiredDate,
             number: number,
-            cardId: '')
+            cardId: '', index: index)
         .toJson());
 
     cardLoading = false;
@@ -90,7 +92,7 @@ class UserController extends ChangeNotifier {
             cvv: infos.cvv,
             expiredDate: infos.expiredDate,
             number: infos.number,
-            cardId: '')
+            cardId: '', index: infos.index)
         .toJson());
     editLoading = false;
     notifyListeners();
@@ -156,6 +158,11 @@ class UserController extends ChangeNotifier {
       debugPrint(lstt.length.toString());
     }
     arxivLoading = false;
+    notifyListeners();
+  }
+
+  getImage(int index) {
+    image = images[index];
     notifyListeners();
   }
 }

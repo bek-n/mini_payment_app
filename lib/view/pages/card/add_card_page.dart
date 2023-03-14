@@ -47,6 +47,7 @@ class AddCardPageState extends State<AddCardPage> {
   @override
   Widget build(BuildContext context) {
     final state = context.read<UserController>();
+    final event = context.watch<UserController>();
     return OnUnFocusTap(
       child: Scaffold(
         appBar: AppBar(
@@ -71,6 +72,7 @@ class AddCardPageState extends State<AddCardPage> {
             children: <Widget>[
               30.verticalSpace,
               CreditCardWidget(
+                backgroundImage: event.image,
                 cardNumber: cardNumber,
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
@@ -103,23 +105,25 @@ class AddCardPageState extends State<AddCardPage> {
                 height: 100.h,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 7,
+                    itemCount: state.images.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {
-                          this.index = index;
-                          state.getColor(index);
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.all(2),
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                           image: DecorationImage(image: AssetImage(listOfImages[index]),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      );
+                          onTap: () {
+                            this.index = index;
+                            state.getImage(index);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            height: 70,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(state.images[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ));
                     }),
               ),
               10.verticalSpace,
@@ -175,10 +179,7 @@ class AddCardPageState extends State<AddCardPage> {
                     ),
                     onCreditCardModelChange: onCreditCardModelChange,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  100.verticalSpace,
+                  20.verticalSpace,
                   GestureDetector(
                       onTap: () {
                         if (formKey.currentState!.validate()) {
@@ -192,7 +193,8 @@ class AddCardPageState extends State<AddCardPage> {
                                     MaterialPageRoute(
                                         builder: (_) => const GeneralPage()),
                                     (route) => false);
-                              });
+                              },
+                              index: index);
                         }
                       },
                       child: const ButtonAddCard()),

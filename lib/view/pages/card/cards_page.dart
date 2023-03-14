@@ -10,7 +10,6 @@ import 'package:mini_payment_app/view/pages/general/general_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
 
-
 class CardsPage extends StatefulWidget {
   const CardsPage({Key? key}) : super(key: key);
 
@@ -92,6 +91,11 @@ class _CardsPageState extends State<CardsPage> {
                                                       )));
                                         },
                                         child: CreditCardWidget(
+                                          backgroundImage:
+                                              event.lst[index].index ==
+                                                      event.images[index]
+                                                  ? event.image
+                                                  : null,
                                           isHolderNameVisible: true,
                                           bankName: 'Davr Bank',
                                           cardNumber: state.lst[index].number,
