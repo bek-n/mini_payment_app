@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
@@ -77,35 +78,48 @@ class _CardsPageState extends State<CardsPage> {
                     children: [
                         24.verticalSpace,
                         Expanded(
-                            child: ListView.builder(
-                                itemCount: state.lst.length,
-                                itemBuilder: (context, index) =>
-                                    GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context)
-                                              .push(MaterialPageRoute(
-                                                  builder: (_) => EditCard(
-                                                        list: state.lst[index],
-                                                        docId: state
-                                                            .lst[index].cardId,
-                                                      )));
-                                        },
-                                        child: CreditCardWidget(
-                                          backgroundImage: state
-                                              .images[state.lst[index].index],
-                                          isHolderNameVisible: true,
-                                          bankName: 'Davr Bank',
-                                          cardNumber: state.lst[index].number,
-                                          expiryDate:
-                                              state.lst[index].expiredDate,
-                                          cardHolderName:
-                                              state.lst[index].cardHolder,
-                                          cvvCode: state.lst[index].cvv,
-                                          showBackView: false,
-                                          onCreditCardWidgetChange:
-                                              // ignore: non_constant_identifier_names
-                                              (CreditCardBrand) {},
-                                        )))),
+                            child: AnimationLimiter(
+                          child: ListView.builder(
+                              itemCount: state.lst.length,
+                              itemBuilder: (context, index) =>
+                                  AnimationConfiguration.staggeredList(
+                                    position: index,
+                                    duration: const Duration(milliseconds: 375),
+                                    child: ScaleAnimation(
+                                      child: SlideAnimation(
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context)
+                                                  .push(MaterialPageRoute(
+                                                      builder: (_) => EditCard(
+                                                            list: state
+                                                                .lst[index],
+                                                            docId: state
+                                                                .lst[index]
+                                                                .cardId,
+                                                          )));
+                                            },
+                                            child: CreditCardWidget(
+                                              backgroundImage: state.images[
+                                                  state.lst[index].index],
+                                              isHolderNameVisible: true,
+                                              bankName: 'Davr Bank',
+                                              cardNumber:
+                                                  state.lst[index].number,
+                                              expiryDate:
+                                                  state.lst[index].expiredDate,
+                                              cardHolderName:
+                                                  state.lst[index].cardHolder,
+                                              cvvCode: state.lst[index].cvv,
+                                              showBackView: false,
+                                              onCreditCardWidgetChange:
+                                                  // ignore: non_constant_identifier_names
+                                                  (CreditCardBrand) {},
+                                            )),
+                                      ),
+                                    ),
+                                  )),
+                        )),
                       ]));
   }
 }

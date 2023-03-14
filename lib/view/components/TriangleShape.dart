@@ -1,10 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:mini_payment_app/view/style/style.dart';
 
 class DrawTriangleShape extends CustomPainter {
   Paint painter = Paint()
-    ..color = const Color(0xFF3491DB)
+    ..color = Style.primaryColor
     ..style = PaintingStyle.fill;
 
   @override

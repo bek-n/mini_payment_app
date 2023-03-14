@@ -2,8 +2,10 @@ import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:mini_payment_app/view/components/zoom_tab_animation.dart';
 import 'package:mini_payment_app/view/pages/all_history.dart';
 import 'package:mini_payment_app/view/pages/card/add_card_page.dart';
 import 'package:mini_payment_app/view/pages/card/cards_page.dart';
@@ -46,8 +48,8 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: 262.h,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
+                decoration: const BoxDecoration(
+                  color: Style.darkBgcolorOfApp,
                 ),
               ),
               CustomPaint(
@@ -174,12 +176,14 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => const SendMoneyPage()));
                   },
-                  child: Homecontainer(
-                    icon: SvgPicture.asset(
-                      "assets/svg/send_icon.svg",
+                  child: ZoomTabAnimation(
+                    child: Homecontainer(
+                      icon: SvgPicture.asset(
+                        "assets/svg/send_icon.svg",
+                      ),
+                      text: 'Send Money',
+                      color: Style.secondary,
                     ),
-                    text: 'Send Money',
-                    color: Style.secondary,
                   ),
                 ),
                 GestureDetector(
@@ -187,14 +191,16 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const CardsPage()));
                   },
-                  child: Homecontainer(
-                    icon: SvgPicture.asset(
-                      "assets/svg/card_icon.svg",
-                      // ignore: deprecated_member_use
-                      color: Style.whiteColor,
+                  child: ZoomTabAnimation(
+                    child: Homecontainer(
+                      icon: SvgPicture.asset(
+                        "assets/svg/card_icon.svg",
+                        // ignore: deprecated_member_use
+                        color: Style.whiteColor,
+                      ),
+                      text: 'My Cards',
+                      color: Style.primaryColor,
                     ),
-                    text: 'My Cards',
-                    color: Style.primaryColor,
                   ),
                 )
               ],
@@ -206,13 +212,15 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => const AddCardPage()));
             },
-            child: const Homecontainer(
-              icon: Icon(
-                Icons.add_card,
-                color: Colors.white,
+            child: const ZoomTabAnimation(
+              child: Homecontainer(
+                icon: Icon(
+                  Icons.add_card,
+                  color: Colors.white,
+                ),
+                text: 'Add card',
+                color: Style.primaryColor,
               ),
-              text: 'Add card',
-              color: Style.primaryColor,
             ),
           ),
           32.verticalSpace,
@@ -241,16 +249,26 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: state.lstt.length,
-                itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: LastTransactions(
-                      date: state.lstt[index].date.substring(0, 16),
-                      name: state.lstt[index].name,
-                      summa: state.lstt[index].summa,
-                    ))),
+            child: AnimationLimiter(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.lstt.length,
+                  itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: FadeInAnimation(
+                          child: SlideAnimation(
+                            child: LastTransactions(
+                              date: state.lstt[index].date.substring(0, 16),
+                              name: state.lstt[index].name,
+                              summa: state.lstt[index].summa,
+                            ),
+                          ),
+                        ),
+                      ))),
+            ),
           )
         ],
       ),
