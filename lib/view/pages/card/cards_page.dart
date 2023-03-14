@@ -91,11 +91,8 @@ class _CardsPageState extends State<CardsPage> {
                                                       )));
                                         },
                                         child: CreditCardWidget(
-                                          backgroundImage:
-                                              event.lst[index].index ==
-                                                      event.images[index]
-                                                  ? event.image
-                                                  : null,
+                                          backgroundImage: state
+                                              .images[state.lst[index].index],
                                           isHolderNameVisible: true,
                                           bankName: 'Davr Bank',
                                           cardNumber: state.lst[index].number,

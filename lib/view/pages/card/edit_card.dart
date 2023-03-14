@@ -33,6 +33,7 @@ class _EditCardState extends State<EditCard> {
     number.text = widget.list.number;
     cvv.text = widget.list.cvv;
     expDate.text = widget.list.expiredDate;
+    index = widget.list.index;
     super.initState();
   }
 
@@ -63,7 +64,7 @@ class _EditCardState extends State<EditCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CreditCardWidget(
-                backgroundImage: event.image,
+                backgroundImage: event.images[index],
                 isHolderNameVisible: true,
                 bankName: 'Davr Bank',
                 cardNumber: widget.list.number,
