@@ -86,6 +86,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                     ),
                     32.verticalSpace,
                     CustomTextFrom(
+                      style: Theme.of(context).textTheme.displaySmall,
                       controller: amount,
                       keyboardType: TextInputType.number,
                       hintext: 'Payment Amount',
@@ -93,6 +94,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                     ),
                     32.verticalSpace,
                     CustomTextFrom(
+                      style: Theme.of(context).textTheme.displaySmall,
                       controller: note,
                       numb: 8,
                       hintext: 'Payment Note',

@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
           decoration: const BoxDecoration(
             gradient: Style.linearUserInfo,
           ),
-          height: 262.h,
+          height: 300.h,
           width: double.infinity,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -47,21 +47,18 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
-                        width: 24.w,
-                        height: 24.h,
-                        child: IconButton(
-                            onPressed: () {
-                              isAdimChangedTheme = !isAdimChangedTheme;
-                              MyApp.of(context)!.change();
-                              LocalStore.setTheme(isAdimChangedTheme);
-                              setState(() {});
-                            },
-                            icon: Icon(
-                                isAdimChangedTheme
-                                    ? Icons.dark_mode
-                                    : Icons.light_mode,
-                                color: Style.blackColor))),
+                    IconButton(
+                        onPressed: () {
+                          isAdimChangedTheme = !isAdimChangedTheme;
+                          MyApp.of(context)!.change();
+                          LocalStore.setTheme(isAdimChangedTheme);
+                          setState(() {});
+                        },
+                        icon: Icon(
+                            isAdimChangedTheme
+                                ? Icons.dark_mode
+                                : Icons.light_mode,
+                            color: Style.blackColor)),
                   ],
                 ),
                 24.verticalSpace,
