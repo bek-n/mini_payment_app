@@ -3,12 +3,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/home_controller.dart';
+import '../../../controller/local.dart';
 import '../../../controller/user_controller.dart';
 import '../../style/style.dart';
 import 'general_page.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isChangeTheme = true;
+
+  @override
+  void initState() {
+    getTheme();
+    super.initState();
+  }
+
+  getTheme() async {
+    isChangeTheme = await LocalStore.getTheme();
+    setState(() {});
+  }
+
+  void change() {
+    isChangeTheme = !isChangeTheme;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

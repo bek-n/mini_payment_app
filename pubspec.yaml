@@ -49,7 +49,8 @@ dependencies:
   intl: ^0.18.0
   flutter_credit_card: ^3.0.6
   dismissible_carousel_viewpager: ^0.0.5
-  flutter_staggered_animations: ^1.1.1 
+  flutter_staggered_animations: ^1.1.1
+  shared_preferences: ^2.0.17 
   
  
 

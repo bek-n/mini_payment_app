@@ -39,17 +39,9 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: SvgPicture.asset(
-                          'assets/svg/edit_icon.svg',
-                          // ignore: deprecated_member_use
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
+                        width: 24.w,
+                        height: 24.h,
+                        child: Icon(Icons.dark_mode)),
                   ],
                 ),
                 24.verticalSpace,

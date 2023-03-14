@@ -30,6 +30,7 @@ class _CardsPageState extends State<CardsPage> {
   @override
   Widget build(BuildContext context) {
     final state = context.read<UserController>();
+    final event = context.watch<UserController>();
 
     return Scaffold(
         appBar: AppBar(
@@ -58,41 +59,45 @@ class _CardsPageState extends State<CardsPage> {
           ),
         ),
         backgroundColor: Colors.white,
-        body: state.lst.isEmpty
-            ? Center(
-                child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LottieBuilder.asset('assets/images/no.json'),
-                  Text(
-                    'No Cards yet',
-                    style: Style.textStyleRegular(),
-                  )
-                ],
-              ))
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                    24.verticalSpace,
-                    Expanded(
-                        child: ListView.builder(
-                            itemCount: state.lst.length,
-                            itemBuilder: (context, index) => GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (_) => EditCard(
-                                                  list: state.lst[index],
-                                                  docId:
-                                                      state.lst[index].cardId,
-                                                )));
-                                  },
-                                  child: PaymentCard(
-                                      holderName: state.lst[index].cardHolder,
-                                      expDate: state.lst[index].expiredDate,
-                                      number: state.lst[index].number),
-                                ))),
-                  ]));
+        body: event.createCardLoading
+            ? const Center(child: CircularProgressIndicator())
+            : state.lst.isEmpty
+                ? Center(
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LottieBuilder.asset('assets/images/no.json'),
+                      Text(
+                        'No Cards yet',
+                        style: Style.textStyleRegular(),
+                      )
+                    ],
+                  ))
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        24.verticalSpace,
+                        Expanded(
+                            child: ListView.builder(
+                                itemCount: state.lst.length,
+                                itemBuilder: (context, index) =>
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                                builder: (_) => EditCard(
+                                                      list: state.lst[index],
+                                                      docId: state
+                                                          .lst[index].cardId,
+                                                    )));
+                                      },
+                                      child: PaymentCard(
+                                          holderName:
+                                              state.lst[index].cardHolder,
+                                          expDate: state.lst[index].expiredDate,
+                                          number: state.lst[index].number),
+                                    ))),
+                      ]));
   }
 }
