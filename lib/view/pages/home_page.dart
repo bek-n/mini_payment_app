@@ -221,17 +221,12 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Last Transactions",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16.sp,
-                  ),
-                ),
+                Text("Last Transactions",
+                    style: Theme.of(context).textTheme.bodySmall),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => const AllHistory()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const AllHistory()));
                   },
                   child: Text(
                     "View All",
@@ -248,7 +243,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: state.lstt.length,
                 itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: LastTransactions(

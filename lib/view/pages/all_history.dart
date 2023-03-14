@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
-
 import '../components/home_last_transactions.dart';
 
 class AllHistory extends StatelessWidget {
@@ -11,7 +11,15 @@ class AllHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.read<UserController>();
     return Scaffold(
-      body: Expanded(
+      appBar: AppBar(
+        backgroundColor: Style.whiteColor,
+        title: Text(
+          'Transaction History',
+          style: Style.textStyleRegular(size: 24),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20),
         child: ListView.builder(
             shrinkWrap: true,
             itemCount: state.lstt.length,
