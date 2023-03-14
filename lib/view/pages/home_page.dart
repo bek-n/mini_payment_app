@@ -4,6 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:mini_payment_app/view/pages/all_history.dart';
 import 'package:mini_payment_app/view/pages/card/add_card_page.dart';
 import 'package:mini_payment_app/view/pages/card/cards_page.dart';
 import 'package:mini_payment_app/view/pages/send_money_page.dart';
@@ -71,8 +72,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       CircleAvatar(
                         radius: 35.w,
-                        backgroundImage: const NetworkImage(
-                            "https://source.unsplash.com/random/1"),
+                        backgroundImage:
+                            const AssetImage("assets/images/bmw.jpeg"),
                       ),
                     ],
                   ),
@@ -148,8 +149,8 @@ class _HomePageState extends State<HomePage> {
                             child: Container(
                               height: 10.h,
                               width: 10.w,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
+                              decoration: const BoxDecoration(
+                                color: Style.secondary,
                                 shape: BoxShape.circle,
                               ),
                             ),
@@ -228,7 +229,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => const AllHistory()));
+                  },
                   child: Text(
                     "View All",
                     style: TextStyle(
@@ -244,7 +248,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: state.lstt.length,
+                itemCount: 3,
                 itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: LastTransactions(
