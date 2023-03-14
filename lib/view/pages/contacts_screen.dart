@@ -14,7 +14,7 @@ class ContactsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Contacts',
-          style: Style.textStyleRegular(size: 24),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
       body: Column(
@@ -22,11 +22,11 @@ class ContactsPage extends StatelessWidget {
           24.verticalSpace,
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: const CustomTextFrom(
-                hintext: '',
+              child: CustomTextFrom(
+                style: Theme.of(context).textTheme.titleSmall,
+                hintext: 'Enter a name',
                 isObscure: false,
-                label: 'Enter a name',
-                suffixicon: Icon(Icons.search),
+                suffixicon: const Icon(Icons.search),
               )),
           24.verticalSpace,
           Expanded(
@@ -49,4 +49,3 @@ class ContactsPage extends StatelessWidget {
     );
   }
 }
-

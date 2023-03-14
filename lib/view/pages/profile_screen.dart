@@ -58,10 +58,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               setState(() {});
                             },
                             icon: Icon(
-                                !isAdimChangedTheme
+                                isAdimChangedTheme
                                     ? Icons.dark_mode
                                     : Icons.light_mode,
-                                color: Style.primaryColor))),
+                                color: Style.blackColor))),
                   ],
                 ),
                 24.verticalSpace,

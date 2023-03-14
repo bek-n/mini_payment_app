@@ -28,18 +28,12 @@ class UserCard extends StatelessWidget {
               children: [
                 Text(
                   'Sardor',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: const Color(0xFF1A1A1A),
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 2.verticalSpace,
                 Text(
                   'sardor@gmail.com',
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: const Color(0xFF1A1A1A).withOpacity(0.4),
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 )
               ],
             ),
