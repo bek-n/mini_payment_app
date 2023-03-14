@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mini_payment_app/view/components/custom_textfromfiled.dart';
-import 'package:mini_payment_app/view/style/style.dart';
-
 import '../components/contacts_card.dart';
 
 class ContactsPage extends StatelessWidget {

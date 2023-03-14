@@ -4,7 +4,6 @@ import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/domain/model/user_model.dart';
 import 'package:mini_payment_app/view/components/custom_textfromfiled.dart';
 import 'package:mini_payment_app/view/components/on_unfocused.dart';
-import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
 import '../components/send_button.dart';
 import '../components/send_money.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
-import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
 import '../components/home_last_transactions.dart';
 

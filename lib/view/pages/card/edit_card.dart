@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mini_payment_app/controller/user_controller.dart';
 import 'package:mini_payment_app/domain/card_model.dart';
 import 'package:mini_payment_app/view/components/custom_textfromfiled.dart';
 import 'package:mini_payment_app/view/components/delete_card_dialog.dart';
-import 'package:mini_payment_app/view/components/my_cards.dart';
 import 'package:mini_payment_app/view/pages/card/cards_page.dart';
 import 'package:mini_payment_app/view/style/style.dart';
 import 'package:provider/provider.dart';
@@ -59,10 +59,17 @@ class _EditCardState extends State<EditCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PaymentCard(
-                  holderName: widget.list.cardHolder,
-                  expDate: widget.list.expiredDate,
-                  number: widget.list.number),
+              CreditCardWidget(
+                isHolderNameVisible: true,
+                bankName: 'Davr Bank',
+                cardNumber: widget.list.number,
+                expiryDate: widget.list.expiredDate,
+                cardHolderName: widget.list.cardHolder,
+                cvvCode: widget.list.cvv,
+                showBackView: false,
+                // ignore: non_constant_identifier_names
+                onCreditCardWidgetChange: (CreditCardBrand) {},
+              ),
               30.verticalSpace,
               Text("Cardholder Name",
                   style: Theme.of(context).textTheme.titleSmall),
