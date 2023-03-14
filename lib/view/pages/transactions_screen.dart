@@ -15,7 +15,7 @@ class TransactionsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Transactions',
-          style: Style.textStyleRegular(size: 24),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
       body: DefaultTabController(
@@ -63,9 +63,7 @@ class TransactionsPage extends StatelessWidget {
                     children: [
                       Text(
                         "March, 2023",
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                        ),
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       16.verticalSpace,
                       SizedBox(

@@ -47,13 +47,11 @@ class _EditCardState extends State<EditCard> {
     final state = context.read<UserController>();
     final event = context.watch<UserController>();
     return Scaffold(
-      backgroundColor: Style.whiteColor,
       appBar: AppBar(
-        title: Text(
-          'Edit Card',
-          style: Style.textStyleRegular(size: 24),
-        ),
-        backgroundColor: Style.whiteColor,
+        iconTheme:
+            IconThemeData(color: Theme.of(context).unselectedWidgetColor),
+        title:
+            Text('Edit Card', style: Theme.of(context).textTheme.titleMedium),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,29 +64,21 @@ class _EditCardState extends State<EditCard> {
                   expDate: widget.list.expiredDate,
                   number: widget.list.number),
               30.verticalSpace,
-              Text(
-                "Cardholder Name",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: const Color(0xFF1A1A1A),
-                ),
-              ),
+              Text("Cardholder Name",
+                  style: Theme.of(context).textTheme.titleSmall),
               8.verticalSpace,
               CustomTextFrom(
+                style: Theme.of(context).textTheme.displaySmall,
                 hintext: '',
                 isObscure: false,
                 controller: name,
               ),
               24.verticalSpace,
-              Text(
-                "Card Number",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: const Color(0xFF1A1A1A),
-                ),
-              ),
+              Text("Card Number",
+                  style: Theme.of(context).textTheme.titleSmall),
               8.verticalSpace,
               CustomTextFrom(
+                style: Theme.of(context).textTheme.displaySmall,
                 hintext: '',
                 isObscure: false,
                 controller: number,
@@ -100,15 +90,11 @@ class _EditCardState extends State<EditCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "cvv/cvc",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: const Color(0xFF1A1A1A),
-                          ),
-                        ),
+                        Text("cvv/cvc",
+                            style: Theme.of(context).textTheme.titleSmall),
                         8.verticalSpace,
                         CustomTextFrom(
+                          style: Theme.of(context).textTheme.displaySmall,
                           hintext: '',
                           isObscure: false,
                           controller: cvv,
@@ -121,15 +107,11 @@ class _EditCardState extends State<EditCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Exp. Date",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: const Color(0xFF1A1A1A),
-                          ),
-                        ),
+                        Text("Exp. Date",
+                            style: Theme.of(context).textTheme.titleSmall),
                         8.verticalSpace,
                         CustomTextFrom(
+                          style: Theme.of(context).textTheme.displaySmall,
                           hintext: '',
                           isObscure: false,
                           controller: expDate,
@@ -147,7 +129,7 @@ class _EditCardState extends State<EditCard> {
         height: 81.h,
         width: 375.w,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.w),
             topRight: Radius.circular(20.w),

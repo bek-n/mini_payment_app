@@ -12,10 +12,11 @@ class AllHistory extends StatelessWidget {
     final state = context.read<UserController>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Style.whiteColor,
+        iconTheme:
+            IconThemeData(color: Theme.of(context).unselectedWidgetColor),
         title: Text(
           'Transaction History',
-          style: Style.textStyleRegular(size: 24),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
       body: Padding(

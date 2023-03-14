@@ -34,6 +34,8 @@ class _CardsPageState extends State<CardsPage> {
 
     return Scaffold(
         appBar: AppBar(
+          iconTheme:
+              IconThemeData(color: Theme.of(context).unselectedWidgetColor),
           leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pushAndRemoveUntil(
@@ -52,13 +54,9 @@ class _CardsPageState extends State<CardsPage> {
                   child: SvgPicture.asset('assets/svg/add_icon.svg')),
             )
           ],
-          backgroundColor: Style.whiteColor,
-          title: Text(
-            'My Cards',
-            style: Style.textStyleRegular(size: 24),
-          ),
+          title:
+              Text('My Cards', style: Theme.of(context).textTheme.titleMedium),
         ),
-        backgroundColor: Colors.white,
         body: event.createCardLoading
             ? const Center(child: CircularProgressIndicator())
             : state.lst.isEmpty

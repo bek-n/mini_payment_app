@@ -53,6 +53,7 @@ class CustomTextFrom extends StatelessWidget {
       keyboardType: keyboardType,
       controller: controller,
       decoration: InputDecoration(
+        hintStyle: Theme.of(context).textTheme.titleMedium,
         fillColor: fillColor,
         filled: filled,
         suffixIcon: suffixicon,

@@ -27,12 +27,12 @@ class TransactionCard extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: Style.textStyleRegular2(size: 14),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               2.verticalSpace,
               Text(
                 date,
-                style: Style.textStyleRegular2(size: 12),
+                style: Theme.of(context).textTheme.titleSmall,
               )
             ],
           ),

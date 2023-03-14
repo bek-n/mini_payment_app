@@ -41,24 +41,30 @@ class _GeneralPageState extends State<GeneralPage> {
           context.read<HomeController>().setIndex(value);
         },
         items: [
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(
               Icons.home_filled,
               size: 25,
-              color: Style.greyColor90,
+              color: Theme.of(context).unselectedWidgetColor,
             ),
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
             'assets/svg/arrows_icon.svg',
+            // ignore: deprecated_member_use
+            color: Theme.of(context).unselectedWidgetColor,
           )),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
             'assets/svg/contacts_icon.svg',
+            // ignore: deprecated_member_use
+            color: Theme.of(context).unselectedWidgetColor,
           )),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
             'assets/svg/user_icon.svg',
+            // ignore: deprecated_member_use
+            color: Theme.of(context).unselectedWidgetColor,
           )),
         ],
       ),

@@ -39,13 +39,11 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     return OnUnFocusTap(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Style.whiteColor,
-          title: Text(
-            'Send Money',
-            style: Style.textStyleRegular(size: 24),
-          ),
+          iconTheme:
+              IconThemeData(color: Theme.of(context).unselectedWidgetColor),
+          title: Text('Send Money',
+              style: Theme.of(context).textTheme.titleMedium),
         ),
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -76,10 +74,12 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Sardor', style: Style.textStyleRegular2()),
+                            Text('Sardor',
+                                style:
+                                    Theme.of(context).textTheme.displaySmall),
                             2.verticalSpace,
                             Text('sardor@gmail.com',
-                                style: Style.textStyleRegular2(size: 12))
+                                style: Theme.of(context).textTheme.titleSmall)
                           ],
                         ),
                       ],
