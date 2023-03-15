@@ -1,12 +1,17 @@
+import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mini_payment_app/controller/user_controller.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mini_payment_app/domain/model/user_model.dart';
 import 'package:mini_payment_app/view/components/custom_textfromfiled.dart';
 import 'package:mini_payment_app/view/components/on_unfocused.dart';
 import 'package:provider/provider.dart';
+import '../../controller/user_controller.dart';
 import '../components/send_button.dart';
 import '../components/send_money.dart';
+import 'package:http/http.dart' as http;
+import '../style/style.dart';
 
 class SendMoneyPage extends StatefulWidget {
   const SendMoneyPage({Key? key}) : super(key: key);
@@ -23,6 +28,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   void initState() {
     amount = TextEditingController();
     note = TextEditingController();
+    getToken();
     super.initState();
   }
 
@@ -31,6 +37,45 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     amount.dispose();
     note.dispose();
     super.dispose();
+  }
+
+  String? fcmToken = "";
+  Future<void> getToken() async {
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      sound: true,
+    );
+    fcmToken = await FirebaseMessaging.instance.getToken();
+    debugPrint(fcmToken);
+    FirebaseMessaging.onMessage.listen((event) {
+      debugPrint('${event.data}');
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    event.data["body"] ?? "body",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Text(event.data["title"] ?? "title",
+                      style: TextStyle(color: Colors.black)),
+                ],
+              ),
+            );
+          });
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      print("onMessageOpenedApp : $event");
+    });
+
+    FirebaseMessaging.onBackgroundMessage((message) {
+      print("onBackgroundMessage : $message");
+      return Future.value();
+    });
   }
 
   @override
@@ -105,6 +150,48 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
               50.verticalSpace,
               GestureDetector(
                   onTap: () async {
+                    if(int.parse(amount.text)<context.watch<UserModel>().totalBalance){
+                    http.post(
+                                Uri.parse(
+                                    "https://fcm.googleapis.com/fcm/send"),
+                                headers: {
+                                  "Content-Type": "application/json",
+                                  'Authorization':
+                                      'key=AAAAc-n3_U8:APA91bH-hV8B9MY2jTiHhJe9WoIWGYnRqULSBWNZla41dLFwxCpYmrb13Mi2081i3IMm-sRVXCwf0yLRrZ-8oDwlnoeK0YWjsgWl7Rlz0O450K_ulpNN1ptKdxwP9E3L-Ut4_OIDRJjm'
+                                },
+                                body: jsonEncode(
+                                  {
+                                    "to": fcmToken,
+                                    "data": {
+                                      "body":
+                                          "Sizning kartangizga ${amount.text} summa qabul qilindi",
+                                      "title": "Biz bn ishlaganiz raxmat !!!"
+                                    }
+                                  },
+                                ),
+                             
+                              );
+                            
+                          }else {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    actions: <Widget>[
+                                      Lottie.network(
+                                          'https://assets10.lottiefiles.com/packages/lf20_8zle4p5u.json'),
+                                      const Center(
+                                        child: Text(
+                                          "Mablag' Yetarli emas",
+                                          style: TextStyle(color: Style.primaryColor),
+
+),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                     await context.read<UserController>().sendMoney(
                         money: int.parse(amount.text),
                         infos: UserModel(

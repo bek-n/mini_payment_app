@@ -51,6 +51,8 @@ dependencies:
   dismissible_carousel_viewpager: ^0.0.5
   flutter_staggered_animations: ^1.1.1
   shared_preferences: ^2.0.17 
+  firebase_messaging: ^14.2.6
+  http: ^0.13.5
   
  
 
